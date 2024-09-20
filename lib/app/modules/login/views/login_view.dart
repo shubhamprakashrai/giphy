@@ -15,31 +15,31 @@ class LoginView extends GetView<LoginController> {
     return ValueListenableBuilder(
         valueListenable: AppLanguageService.services.languageChange,
         builder: (context, value, child) {
-        return Directionality(
-          textDirection: AppLanguageService.lang.direction,
-          child: Scaffold(
-            body: Container(
-              margin: const EdgeInsets.all(24),
-              child: SingleChildScrollView(
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    const ChangeLanguage(),
-                    const SizedBox(height: 30,),
-                    _header(context),
-                    const SizedBox(height: 10,),
-                    _inputField(context),
-                    const SizedBox(height: 20,),
-                    _forgotPassword(context),
-                    _signup(context),
-                  ],
+          return Directionality(
+            textDirection: AppLanguageService.lang.direction,
+            child: Scaffold(
+              body: Container(
+                margin: const EdgeInsets.all(24),
+                child: SingleChildScrollView(
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      const ChangeLanguage(),
+                      const SizedBox(height: 30,),
+                      _header(context),
+                      const SizedBox(height: 10,),
+                      _inputField(context),
+                      const SizedBox(height: 20,),
+                      _forgotPassword(context),
+                      _signup(context),
+                    ],
+                  ),
                 ),
               ),
             ),
-          ),
-        );
-      }
+          );
+        }
     );
   }
 
@@ -67,8 +67,8 @@ class LoginView extends GetView<LoginController> {
           decoration: InputDecoration(
             hintText: context.L.email,
             border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(18),
-              borderSide: BorderSide.none),
+                borderRadius: BorderRadius.circular(18),
+                borderSide: BorderSide.none),
             fillColor: Colors.purple.withOpacity(0.1),
             filled: true,
             prefixIcon: const Icon(Icons.person),
@@ -78,26 +78,26 @@ class LoginView extends GetView<LoginController> {
         ValueListenableBuilder(
             valueListenable: ctr.passwordNotifier,
             builder: (context, val, ch) {
-            return TextFormField(
-              controller: ctr.passwordController,
-              keyboardType: TextInputType.visiblePassword,
-              decoration: InputDecoration(
-                hintText: context.L.password,
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(18),
-                  borderSide: BorderSide.none
+              return TextFormField(
+                controller: ctr.passwordController,
+                keyboardType: TextInputType.visiblePassword,
+                decoration: InputDecoration(
+                  hintText: context.L.password,
+                  border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(18),
+                      borderSide: BorderSide.none
+                  ),
+                  fillColor: Colors.purple.withOpacity(0.1),
+                  filled: true,
+                  prefixIcon: GestureDetector(
+                      onTap: () => ctr.passwordNotifier.value = !ctr.passwordNotifier.value,
+                      child: Icon(val? Icons.lock_open: Icons.lock_outline)
+                  ),
                 ),
-                fillColor: Colors.purple.withOpacity(0.1),
-                filled: true,
-                prefixIcon: InkWell(
-                  onTap: () => ctr.passwordNotifier.value = !ctr.passwordNotifier.value,
-                  child: Icon(val? Icons.lock_open: Icons.lock_outline)
-                ),
-              ),
-              obscureText: ctr.passwordNotifier.value,
-              onFieldSubmitted: (_) => ctr.login(),
-            );
-          }
+                obscureText: ctr.passwordNotifier.value,
+                onFieldSubmitted: (_) => ctr.login(),
+              );
+            }
         ),
         const SizedBox(height: 10),
         ElevatedButton(
@@ -136,7 +136,7 @@ class LoginView extends GetView<LoginController> {
         TextButton(
             onPressed: () {
               // Navigate to sign up page
-              Get.to(const SignupView(),binding: SignupBinding());
+              Get.off(const SignupView(),binding: SignupBinding());
             },
             child: Text(
               context.L.signUp,

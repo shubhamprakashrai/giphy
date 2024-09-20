@@ -45,62 +45,59 @@ class SignupView extends GetView<SignupController> {
 
                   // Email Field with validation
                   Obx(() => TextField(
-                        controller: controller.emailController,
-                        decoration: InputDecoration(
-                          hintText:  context.L.emailHint,
-                          errorText: controller.emailError.value.isNotEmpty
-                              ? controller.emailError.value
-                              : null,
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(18),
-                            borderSide: BorderSide.none,
-                          ),
-                          fillColor: Colors.purple.withOpacity(0.1),
-                          filled: true,
-                          prefixIcon: const Icon(Icons.email),
-                        ),
-                      )),
+                    controller: controller.emailController,
+                    decoration: InputDecoration(
+                      hintText:  context.L.emailHint,
+                      errorText: controller.emailError.value.isNotEmpty
+                          ? controller.emailError.value
+                          : null,
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(18),
+                        borderSide: BorderSide.none,
+                      ),
+                      fillColor: Colors.purple.withOpacity(0.1),
+                      filled: true,
+                      prefixIcon: const Icon(Icons.email),
+                    ),
+                  )),
                   const SizedBox(height: 20),
 
                   // Password Field with validation
                   Obx(() => TextField(
-                        controller: controller.passwordController,
-                        decoration: InputDecoration(
-                          hintText:  context.L.passwordHint,
-                          errorText: controller.passwordError.value.isNotEmpty
-                              ? controller.passwordError.value
-                              : null,
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(18),
-                            borderSide: BorderSide.none,
-                          ),
-                          fillColor: Colors.purple.withOpacity(0.1),
-                          filled: true,
-                          prefixIcon: const Icon(Icons.password),
-                        ),
-                        obscureText: true,
-                      )),
+                    controller: controller.passwordController,
+                    decoration: InputDecoration(
+                      hintText:  context.L.passwordHint,
+                      errorText: controller.passwordError.value.isNotEmpty
+                          ? controller.passwordError.value
+                          : null,
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(18),
+                        borderSide: BorderSide.none,
+                      ),
+                      fillColor: Colors.purple.withOpacity(0.1),
+                      filled: true,
+                      prefixIcon: const Icon(Icons.lock_outline),
+                    ),
+                    obscureText: true,
+                  )),
                   const SizedBox(height: 20),
 
                   // Confirm Password Field with validation
                   Obx(() => TextField(
-                        controller: controller.confirmPasswordController,
-                        decoration: InputDecoration(
-                          hintText:  context.L.confirmPasswordHint,
-                          errorText:
-                              controller.confirmPasswordError.value.isNotEmpty
-                                  ? controller.confirmPasswordError.value
-                                  : null,
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(18),
-                            borderSide: BorderSide.none,
-                          ),
-                          fillColor: Colors.purple.withOpacity(0.1),
-                          filled: true,
-                          prefixIcon: const Icon(Icons.password),
-                        ),
-                        obscureText: true,
-                      )),
+                    controller: controller.confirmPasswordController,
+                    decoration: InputDecoration(
+                      hintText: context.L.confirmPasswordHint,
+                      errorText: controller.confirmPasswordError.value.isNotEmpty? controller.confirmPasswordError.value : null,
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(18),
+                        borderSide: BorderSide.none,
+                      ),
+                      fillColor: Colors.purple.withOpacity(0.1),
+                      filled: true,
+                      prefixIcon: const Icon(Icons.lock_outline),
+                    ),
+                    obscureText: true,
+                  )),
                 ],
               ),
 
@@ -116,7 +113,7 @@ class SignupView extends GetView<SignupController> {
                     ),
                     child: Text(
                       context.L.signUp,
-                      style: const TextStyle(fontSize: 20),
+                      style: const TextStyle(fontSize: 20).white.w7,
                     ),
                   )),
 
@@ -144,18 +141,18 @@ class SignupView extends GetView<SignupController> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Container(
-                        height: 30.0,
-                        width: 30.0,
-                        decoration: const BoxDecoration(
-                          image: DecorationImage(
-                              image: AssetImage(
-                                  AppImages.googleLogo),
-                              fit: BoxFit.cover),
-                          shape: BoxShape.circle,
-                        ),
-                      ),
-                      const SizedBox(width: 18),
+                      // Container(
+                      //   height: 30.0,
+                      //   width: 30.0,
+                      //   decoration: const BoxDecoration(
+                      //     image: DecorationImage(
+                      //         image: AssetImage(
+                      //             AppImages.googleLogo),
+                      //         fit: BoxFit.cover),
+                      //     shape: BoxShape.circle,
+                      //   ),
+                      // ),
+                      // const SizedBox(width: 18),
                       Text(
                         context.L.signInWithGoogle,
                         style: const TextStyle(

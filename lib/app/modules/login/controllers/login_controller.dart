@@ -2,6 +2,8 @@ import 'package:get/get.dart';
 import 'package:giphyapp/app/modules/login/repository/login_repository.dart';
 import 'package:giphyapp/app/modules/signup/models/signup_models.dart';
 import 'package:flutter/material.dart';
+import 'package:giphyapp/app/services/app_type_def.dart';
+import 'package:giphyapp/app/services/language_service.dart';
 
 class LoginController extends GetxController {
   final LoginRepository _loginRepository = LoginRepository();
@@ -10,17 +12,18 @@ class LoginController extends GetxController {
   final passwordController = TextEditingController();
   final ValueNotifier<bool> passwordNotifier = ValueNotifier(false);
 
-  void login() async {
+  FRVoid login() async {
     String email = emailController.text.trim();
     String password = passwordController.text.trim();
+
+    log.d("Email $email Password $password");
 
     if (validateForm()) {
       try {
         UserModel? userModel = await _loginRepository.login(email, password);
-
         if (userModel != null) {
           Get.snackbar("Success", "Login successful",snackPosition: SnackPosition.BOTTOM);
-          Get.offAndToNamed("/home");
+          Get.offNamed("/home");
         } else {
           Get.snackbar("Error", "Login failed, invalid credentials",snackPosition: SnackPosition.BOTTOM);
         }
