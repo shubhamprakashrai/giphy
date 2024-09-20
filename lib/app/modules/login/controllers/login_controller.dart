@@ -1,23 +1,53 @@
 import 'package:get/get.dart';
+import 'package:giphyapp/app/modules/login/repository/login_repository.dart';
+import 'package:giphyapp/app/modules/signup/models/signup_models.dart';
+import 'package:flutter/material.dart';
 
 class LoginController extends GetxController {
-  //TODO: Implement LoginController
+  final LoginRepository _loginRepository = LoginRepository();
 
-  final count = 0.obs;
-  @override
-  void onInit() {
-    super.onInit();
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
+  final ValueNotifier<bool> passwordNotifier = ValueNotifier(false);
+
+  void login() async {
+    String email = emailController.text.trim();
+    String password = passwordController.text.trim();
+
+    if (validateForm()) {
+      try {
+        UserModel? userModel = await _loginRepository.login(email, password);
+
+        if (userModel != null) {
+          Get.snackbar("Success", "Login successful",snackPosition: SnackPosition.BOTTOM);
+          Get.offAndToNamed("/home");
+        } else {
+          Get.snackbar("Error", "Login failed, invalid credentials",snackPosition: SnackPosition.BOTTOM);
+        }
+      } catch (e) {
+        Get.snackbar("Error", "An error occurred while logging in",snackPosition: SnackPosition.BOTTOM);
+        debugPrint("Login Error: $e");
+      }
+    }
   }
 
-  @override
-  void onReady() {
-    super.onReady();
+  bool validateForm() {
+    if (!GetUtils.isEmail(emailController.text.trim())) {
+      Get.snackbar("Invalid Email", "Please enter a valid email",
+          snackPosition: SnackPosition.BOTTOM);
+      return false;
+    } else if (passwordController.text.trim().isEmpty) {
+      Get.snackbar("Invalid Password", "Please enter your password",
+          snackPosition: SnackPosition.BOTTOM);
+      return false;
+    }
+    return true;
   }
 
   @override
   void onClose() {
+    emailController.dispose();
+    passwordController.dispose();
     super.onClose();
   }
-
-  void increment() => count.value++;
 }

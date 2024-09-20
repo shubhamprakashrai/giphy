@@ -1,6 +1,15 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:get/get.dart';
+import 'package:giphyapp/app/app_constants.dart';
+import 'package:giphyapp/app/app_extension.dart';
+import 'package:giphyapp/app/modules/home/bindings/home_binding.dart';
+import 'package:giphyapp/app/modules/login/bindings/login_binding.dart';
+import 'package:giphyapp/app/modules/login/views/login_view.dart';
+import 'package:giphyapp/app/utils/firbaseService/TabBarNavigation/tab_navigation.dart';
+import 'package:giphyapp/app/utils/firbaseService/firebaseService.dart';
+
 import 'package:lottie/lottie.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -10,7 +19,8 @@ class SplashScreen extends StatefulWidget {
   State<SplashScreen> createState() => _SplashScreenState();
 }
 
-class _SplashScreenState extends State<SplashScreen> with TickerProviderStateMixin {
+class _SplashScreenState extends State<SplashScreen>
+    with TickerProviderStateMixin {
   late AnimationController _fadeController;
   late Animation<double> _fadeAnimation;
 
@@ -18,23 +28,26 @@ class _SplashScreenState extends State<SplashScreen> with TickerProviderStateMix
   void initState() {
     super.initState();
 
-
+    // Initialize fade animation
     _fadeController = AnimationController(
       vsync: this,
       duration: const Duration(seconds: 1),
     );
     _fadeAnimation = Tween<double>(begin: 0.0, end: 1.0).animate(_fadeController);
-
-   
     _fadeController.forward();
-
-   
     Timer(const Duration(seconds: 4), () {
-      // Navigator.pushReplacement(
-      //   context,
-      //   MaterialPageRoute(builder: (context) => const NextScreen()), // Replace with your next screen
-      // );
+      _checkAuthenticationStatus();
     });
+  }
+
+  void _checkAuthenticationStatus() {
+    User? user = FirebaseService().getCurrentUser();
+
+    if (user != null) {
+      Get.offAll(() => const TabBarNavigation(),binding: HomeBinding(),);
+    } else {
+      Get.offAll(() => const LoginView(), binding: LoginBinding());
+    }
   }
 
   @override
@@ -54,7 +67,7 @@ class _SplashScreenState extends State<SplashScreen> with TickerProviderStateMix
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Lottie.asset(
-                'assets/images/splash.json',  
+                AppImages.splashLottie,
                 width: 200,
                 height: 200,
                 fit: BoxFit.fill,
@@ -64,9 +77,9 @@ class _SplashScreenState extends State<SplashScreen> with TickerProviderStateMix
                 valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
               ),
               const SizedBox(height: 20),
-              const Text(
-                'Loading...',
-                style: TextStyle(
+              Text(
+                context.L.loading,
+                style: const TextStyle(
                   fontSize: 18,
                   color: Colors.white,
                   fontWeight: FontWeight.bold,

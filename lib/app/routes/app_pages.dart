@@ -1,6 +1,10 @@
 import 'package:get/get.dart';
 
 import '../../splash_screen.dart';
+import '../modules/favoritepage/bindings/favoritepage_binding.dart';
+import '../modules/favoritepage/views/favoritepage_view.dart';
+import '../modules/home/bindings/home_binding.dart';
+import '../modules/home/views/home_view.dart';
 import '../modules/login/bindings/login_binding.dart';
 import '../modules/login/views/login_view.dart';
 import '../modules/signup/bindings/signup_binding.dart';
@@ -28,6 +32,15 @@ class AppPages {
       page: () => const SignupView(),
       binding: SignupBinding(),
     ),
-   
+    GetPage(
+      name: _Paths.home,
+      page: () => const HomeView(),
+      binding: HomeBinding(),
+    ),
+    GetPage(
+      name: _Paths.FAVORITEPAGE,
+      page: () =>  FavoritepageView(),
+      binding: FavoritepageBinding(),
+    ),
   ];
 }

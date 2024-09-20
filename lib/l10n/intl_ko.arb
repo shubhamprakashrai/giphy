@@ -1,0 +1,24 @@
+{
+    "loading": "로드 중...",
+    "welcomeBack": "다시 오신 것을 환영합니다",
+    "enterYourCred": "로그인하려면 자격 증명을 입력하세요",
+    "email": "이메일",
+    "password": "비밀번호",
+    "login": "로그인",
+    "forgetPassword": "비밀번호를 잊으셨나요?",
+    "dontHaveAccount": "계정이 없으신가요?",
+    "signUp": "가입하기",
+    "signUpTitle": "가입하기",
+    "createAccount": "계정을 만드세요",
+    "emailHint": "이메일",
+    "passwordHint": "비밀번호",
+    "confirmPasswordHint": "비밀번호 확인",
+    "signUpButton": "가입하기",
+    "or": "또는",
+    "signInWithGoogle": "Google로 로그인",
+    "alreadyHaveAccount": "이미 계정이 있으신가요?",
+    "trendingGifsTitle": "인기 GIF",
+    "noGifsMessage": "표시할 GIF가 없습니다",
+    "title": "GiphyApp"
+  }
+  

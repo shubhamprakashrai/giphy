@@ -1,0 +1,24 @@
+{
+    "loading": "लोड हो रहा है...",
+    "welcomeBack": "वापसी पर स्वागत है",
+    "enterYourCred": "लॉगिन करने के लिए अपनी जानकारी दर्ज करें",
+    "email": "ईमेल",
+    "password": "पासवर्ड",
+    "login": "लॉग इन करें",
+    "forgetPassword": "क्या आपने पासवर्ड भूल गए?",
+    "dontHaveAccount": "क्या आपका खाता नहीं है?",
+    "signUp": "साइन अप करें",
+    "signUpTitle": "साइन अप करें",
+    "createAccount": "अपना खाता बनाएं",
+    "emailHint": "ईमेल",
+    "passwordHint": "पासवर्ड",
+    "confirmPasswordHint": "पासवर्ड की पुष्टि करें",
+    "signUpButton": "साइन अप करें",
+    "or": "या",
+    "signInWithGoogle": "Google से साइन इन करें",
+    "alreadyHaveAccount": "पहले से खाता है?",
+    "trendingGifsTitle": "प्रचलित GIFs",
+    "noGifsMessage": "प्रदर्शित करने के लिए कोई GIF नहीं",
+    "title": "GiphyApp"
+  }
+  

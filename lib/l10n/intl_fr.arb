@@ -1,0 +1,24 @@
+{
+    "loading": "Chargement...",
+    "welcomeBack": "Bon retour",
+    "enterYourCred": "Entrez vos identifiants pour vous connecter",
+    "email": "E-mail",
+    "password": "Mot de passe",
+    "login": "Connexion",
+    "forgetPassword": "Mot de passe oublié?",
+    "dontHaveAccount": "Vous n'avez pas de compte?",
+    "signUp": "S'inscrire",
+    "signUpTitle": "S'inscrire",
+    "createAccount": "Créez votre compte",
+    "emailHint": "E-mail",
+    "passwordHint": "Mot de passe",
+    "confirmPasswordHint": "Confirmer le mot de passe",
+    "signUpButton": "S'inscrire",
+    "or": "Ou",
+    "signInWithGoogle": "Se connecter avec Google",
+    "alreadyHaveAccount": "Vous avez déjà un compte?",
+    "trendingGifsTitle": "GIFs populaires",
+    "noGifsMessage": "Aucun GIF à afficher",
+    "title": "GiphyApp"
+  }
+  

@@ -1,110 +1,147 @@
 import 'package:flutter/material.dart';
-
 import 'package:get/get.dart';
-
+import 'package:giphyapp/app/app_extension.dart';
+import 'package:giphyapp/app/modules/signup/bindings/signup_binding.dart';
+import 'package:giphyapp/app/modules/signup/views/signup_view.dart';
+import 'package:giphyapp/app/services/language_service.dart';
+import 'package:giphyapp/app/uiUtils/components/change_language.dart';
 import '../controllers/login_controller.dart';
 
 class LoginView extends GetView<LoginController> {
   const LoginView({super.key});
+
   @override
-   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: Scaffold(
-        body: Container(
-          margin: const EdgeInsets.all(24),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              _header(context),
-              _inputField(context),
-              _forgotPassword(context),
-              _signup(context),
-            ],
+    return ValueListenableBuilder(
+        valueListenable: AppLanguageService.services.languageChange,
+        builder: (context, value, child) {
+        return Directionality(
+          textDirection: AppLanguageService.lang.direction,
+          child: Scaffold(
+            body: Container(
+              margin: const EdgeInsets.all(24),
+              child: SingleChildScrollView(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    const ChangeLanguage(),
+                    const SizedBox(height: 30,),
+                    _header(context),
+                    const SizedBox(height: 10,),
+                    _inputField(context),
+                    const SizedBox(height: 20,),
+                    _forgotPassword(context),
+                    _signup(context),
+                  ],
+                ),
+              ),
+            ),
           ),
-        ),
-      ),
+        );
+      }
     );
   }
 
-  _header(context) {
-    return const Column(
+  Widget _header(BuildContext context) {
+    return Column(
+      mainAxisSize: MainAxisSize.min,
       children: [
         Text(
-          "Welcome Back",
-          style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold),
+          context.L.welcomeBack,
+          style: const TextStyle(fontSize: 40, fontWeight: FontWeight.bold),
         ),
-        Text("Enter your credential to login"),
+        Text(context.L.enterYourCred),
       ],
     );
   }
 
-  _inputField(context) {
+  Widget _inputField(BuildContext context) {
+    final ctr = Get.find<LoginController>();
     return Column(
+      mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        TextField(
+        TextFormField(
+          controller: ctr.emailController,
           decoration: InputDecoration(
-              hintText: "Username",
-              border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(18),
-                  borderSide: BorderSide.none
-              ),
-              fillColor: Colors.purple.withOpacity(0.1),
-              filled: true,
-              prefixIcon: const Icon(Icons.person)),
-        ),
-        const SizedBox(height: 10),
-        TextField(
-          decoration: InputDecoration(
-            hintText: "Password",
+            hintText: context.L.email,
             border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(18),
-                borderSide: BorderSide.none),
+              borderRadius: BorderRadius.circular(18),
+              borderSide: BorderSide.none),
             fillColor: Colors.purple.withOpacity(0.1),
             filled: true,
-            prefixIcon: const Icon(Icons.password),
+            prefixIcon: const Icon(Icons.person),
           ),
-          obscureText: true,
+        ),
+        const SizedBox(height: 10),
+        ValueListenableBuilder(
+            valueListenable: ctr.passwordNotifier,
+            builder: (context, val, ch) {
+            return TextFormField(
+              controller: ctr.passwordController,
+              keyboardType: TextInputType.visiblePassword,
+              decoration: InputDecoration(
+                hintText: context.L.password,
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(18),
+                  borderSide: BorderSide.none
+                ),
+                fillColor: Colors.purple.withOpacity(0.1),
+                filled: true,
+                prefixIcon: InkWell(
+                  onTap: () => ctr.passwordNotifier.value = !ctr.passwordNotifier.value,
+                  child: Icon(val? Icons.lock_open: Icons.lock_outline)
+                ),
+              ),
+              obscureText: ctr.passwordNotifier.value,
+              onFieldSubmitted: (_) => ctr.login(),
+            );
+          }
         ),
         const SizedBox(height: 10),
         ElevatedButton(
-          onPressed: () {
-          },
+          onPressed: ctr.login,
           style: ElevatedButton.styleFrom(
             shape: const StadiumBorder(),
             padding: const EdgeInsets.symmetric(vertical: 16),
             backgroundColor: Colors.purple,
           ),
-          child: const Text(
-            "Login",
-            style: TextStyle(fontSize: 20),
+          child: Text(
+            context.L.login,
+            style: const TextStyle(fontSize: 20).white.w7,
           ),
         )
       ],
     );
   }
 
-  _forgotPassword(context) {
+  Widget _forgotPassword(BuildContext context) {
     return TextButton(
-      onPressed: () {},
-      child: const Text("Forgot password?",
-        style: TextStyle(color: Colors.purple),
+      onPressed: () {
+        // Forgot password logic here
+      },
+      child: Text(
+        context.L.forgetPassword,
+        style: const TextStyle(color: Colors.purple),
       ),
     );
   }
 
-  _signup(context) {
+  Widget _signup(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        const Text("Dont have an account? "),
+        Text(context.L.dontHaveAccount),
         TextButton(
             onPressed: () {
+              // Navigate to sign up page
+              Get.to(const SignupView(),binding: SignupBinding());
             },
-            child: const Text("Sign Up", style: TextStyle(color: Colors.purple),)
-        )
+            child: Text(
+              context.L.signUp,
+              style: const TextStyle(color: Colors.purple),
+            ))
       ],
     );
   }

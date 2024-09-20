@@ -1,0 +1,24 @@
+{
+    "loading": "جار التحميل...",
+    "welcomeBack": "مرحبًا بعودتك",
+    "enterYourCred": "أدخل بياناتك لتسجيل الدخول",
+    "email": "البريد الإلكتروني",
+    "password": "كلمة المرور",
+    "login": "تسجيل الدخول",
+    "forgetPassword": "هل نسيت كلمة المرور؟",
+    "dontHaveAccount": "ليس لديك حساب؟",
+    "signUp": "إنشاء حساب",
+    "signUpTitle": "إنشاء حساب",
+    "createAccount": "أنشئ حسابك",
+    "emailHint": "البريد الإلكتروني",
+    "passwordHint": "كلمة المرور",
+    "confirmPasswordHint": "تأكيد كلمة المرور",
+    "signUpButton": "إنشاء حساب",
+    "or": "أو",
+    "signInWithGoogle": "تسجيل الدخول باستخدام جوجل",
+    "alreadyHaveAccount": "هل لديك حساب بالفعل؟",
+    "trendingGifsTitle": "صور GIF الرائجة",
+    "noGifsMessage": "لا توجد صور GIF لعرضها",
+    "title": "GiphyApp"
+  }
+  

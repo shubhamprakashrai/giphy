@@ -1,0 +1,24 @@
+{
+    "loading": "Загрузка...",
+    "welcomeBack": "Добро пожаловать",
+    "enterYourCred": "Введите свои данные для входа",
+    "email": "Электронная почта",
+    "password": "Пароль",
+    "login": "Войти",
+    "forgetPassword": "Забыли пароль?",
+    "dontHaveAccount": "Нет аккаунта?",
+    "signUp": "Зарегистрироваться",
+    "signUpTitle": "Зарегистрироваться",
+    "createAccount": "Создайте свою учетную запись",
+    "emailHint": "Электронная почта",
+    "passwordHint": "Пароль",
+    "confirmPasswordHint": "Подтвердите пароль",
+    "signUpButton": "Зарегистрироваться",
+    "or": "Или",
+    "signInWithGoogle": "Войти через Google",
+    "alreadyHaveAccount": "Уже есть аккаунт?",
+    "trendingGifsTitle": "Популярные GIF",
+    "noGifsMessage": "Нет GIF для отображения",
+    "title": "GiphyApp"
+  }
+  

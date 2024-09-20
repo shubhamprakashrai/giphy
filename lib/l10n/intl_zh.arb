@@ -1,0 +1,24 @@
+{
+    "loading": "加载中...",
+    "welcomeBack": "欢迎回来",
+    "enterYourCred": "输入您的凭证登录",
+    "email": "电子邮件",
+    "password": "密码",
+    "login": "登录",
+    "forgetPassword": "忘记密码？",
+    "dontHaveAccount": "没有账号？",
+    "signUp": "注册",
+    "signUpTitle": "注册",
+    "createAccount": "创建您的帐户",
+    "emailHint": "电子邮件",
+    "passwordHint": "密码",
+    "confirmPasswordHint": "确认密码",
+    "signUpButton": "注册",
+    "or": "或",
+    "signInWithGoogle": "使用Google登录",
+    "alreadyHaveAccount": "已经有账号？",
+    "trendingGifsTitle": "热门GIF",
+    "noGifsMessage": "没有可显示的GIF",
+    "title": "GiphyApp"
+  }
+  
