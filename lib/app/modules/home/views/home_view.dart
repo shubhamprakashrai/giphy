@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:giphyapp/app/app_extension.dart';
@@ -54,11 +55,16 @@ class HomeView extends GetView<HomeController> {
                         final gifUrl = controller.gifUrls[index];
                         return Stack(
                           children: [
-                            Image.network(
-                              gifUrl,
-                              fit: BoxFit.cover,
+                            CachedNetworkImage(
+                              imageUrl: gifUrl,
                               width: double.infinity,
                               height: double.infinity,
+                              fit: BoxFit.fill,
+                              matchTextDirection: true,
+                              progressIndicatorBuilder: (context, url, downloadProgress) => SizedBox(
+                                  height: 50,
+                                  width: 50,
+                                  child: Center(child: CircularProgressIndicator(value: downloadProgress.progress))),
                             ),
                             Positioned(
                                 top: 4,
