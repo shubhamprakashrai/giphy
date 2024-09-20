@@ -1,12 +1,7 @@
-import 'package:cached_network_image/cached_network_image.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:giphyapp/app/app_extension.dart';
 import 'package:giphyapp/app/modules/home/controllers/home_controller.dart';
-import 'package:giphyapp/app/modules/signup/bindings/signup_binding.dart';
-import 'package:giphyapp/app/modules/signup/views/signup_view.dart';
 import 'package:giphyapp/app/uiUtils/components/custom_search.dart';
 import 'package:giphyapp/app/uiUtils/components/shimmer_effect.dart';
 
@@ -19,17 +14,8 @@ class HomeView extends GetView<HomeController> {
 
     return Scaffold(
       appBar: AppBar(
-        automaticallyImplyLeading: false,
         title: Text(context.L.trendingGifsTitle),
         centerTitle: true,
-        actions: [
-          GestureDetector(
-              onTap: () async {
-                await FirebaseAuth.instance.signOut();
-                Get.off(const SignupView(),binding: SignupBinding());
-              },
-              child: const Icon(Icons.logout_outlined))
-        ],
       ),
       body: Column(
         children: [
@@ -68,31 +54,24 @@ class HomeView extends GetView<HomeController> {
                         final gifUrl = controller.gifUrls[index];
                         return Stack(
                           children: [
-                            CachedNetworkImage(
-                              imageUrl: gifUrl,
+                            Image.network(
+                              gifUrl,
+                              fit: BoxFit.cover,
                               width: double.infinity,
                               height: double.infinity,
-                              fit: BoxFit.fill,
-                              matchTextDirection: true,
-                              progressIndicatorBuilder: (context, url, downloadProgress) => SizedBox(
-                                  height: 50,
-                                  width: 50,
-                                  child: Center(child: CircularProgressIndicator(value: downloadProgress.progress))),
                             ),
-                            Align(
-                              alignment: Alignment.topRight,
-                              child: Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: GestureDetector(
+                            Positioned(
+                                top: 4,
+                                right: 4,
+                                child: Obx(() => GestureDetector(
                                   onTap: () =>controller.toggleFavoriteGif(gifUrl),
                                   child: Icon(
                                     controller.isFavorite(gifUrl) ? Icons.favorite : Icons.favorite_border,
                                     color:controller.isFavorite(gifUrl) ? Colors.red : Colors.green,
                                     size: 30,
                                   ),
-                                ),
-                              ),
-                            )
+                                ),)
+                            ),
                           ],
                         );
                       },

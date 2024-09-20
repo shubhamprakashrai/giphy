@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:giphyapp/app/modules/home/controllers/home_controller.dart';
@@ -29,12 +30,23 @@ class FavoritepageView extends StatelessWidget {
             final gifUrl = controller.favoriteGifUrls.toList()[index]; // Convert to List for indexed access
             return Stack(
               children: [
-                Image.network(
-                  gifUrl,
-                  fit: BoxFit.cover,
+                CachedNetworkImage(
+                  imageUrl: gifUrl,
                   width: double.infinity,
                   height: double.infinity,
+                  fit: BoxFit.fill,
+                  matchTextDirection: true,
+                  progressIndicatorBuilder: (context, url, downloadProgress) => SizedBox(
+                      height: 50,
+                      width: 50,
+                      child: Center(child: CircularProgressIndicator(value: downloadProgress.progress))),
                 ),
+                // Image.network(
+                //   gifUrl,
+                //   fit: BoxFit.cover,
+                //   width: double.infinity,
+                //   height: double.infinity,
+                // ),
                 Positioned(
                   top: 4,
                   right: 4,
@@ -52,7 +64,7 @@ class FavoritepageView extends StatelessWidget {
               ],
             );
           },
-        );
+        ).paddingSymmetric(horizontal: 10);
       }),
     );
   }
