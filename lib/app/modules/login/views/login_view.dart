@@ -5,6 +5,8 @@ import 'package:giphyapp/app/modules/signup/bindings/signup_binding.dart';
 import 'package:giphyapp/app/modules/signup/views/signup_view.dart';
 import 'package:giphyapp/app/services/language_service.dart';
 import 'package:giphyapp/app/uiUtils/components/change_language.dart';
+import 'package:giphyapp/app/uiUtils/components/customTextField.dart';
+import 'package:giphyapp/app/uiUtils/components/custon_btn.dart';
 import '../controllers/login_controller.dart';
 
 class LoginView extends GetView<LoginController> {
@@ -18,22 +20,24 @@ class LoginView extends GetView<LoginController> {
           return Directionality(
             textDirection: AppLanguageService.lang.direction,
             child: Scaffold(
-              body: Container(
-                margin: const EdgeInsets.all(24),
-                child: SingleChildScrollView(
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      const ChangeLanguage(),
-                      const SizedBox(height: 30,),
-                      _header(context),
-                      const SizedBox(height: 10,),
-                      _inputField(context),
-                      const SizedBox(height: 20,),
-                      _forgotPassword(context),
-                      _signup(context),
-                    ],
+              body: SafeArea(
+                child: Container(
+                  margin: const EdgeInsets.all(24),
+                  child: SingleChildScrollView(
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        const ChangeLanguage(),
+                        const SizedBox(height: 30,),
+                        _header(context),
+                        const SizedBox(height: 10,),
+                        _inputField(context),
+                        const SizedBox(height: 20,),
+                        _forgotPassword(context),
+                        _signup(context),
+                      ],
+                    ),
                   ),
                 ),
               ),
@@ -62,56 +66,79 @@ class LoginView extends GetView<LoginController> {
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        TextFormField(
+        CustomTextField(
           controller: ctr.emailController,
-          decoration: InputDecoration(
-            hintText: context.L.email,
-            border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(18),
-                borderSide: BorderSide.none),
-            fillColor: Colors.purple.withOpacity(0.1),
-            filled: true,
-            prefixIcon: const Icon(Icons.person),
-          ),
+          hintText: context.L.email,
+          prefixIcon: const Icon(Icons.person),
         ),
+        // TextFormField(
+        //   controller: ctr.emailController,
+        //   decoration: InputDecoration(
+        //     hintText: context.L.email,
+        //     border: OutlineInputBorder(
+        //         borderRadius: BorderRadius.circular(18),
+        //         borderSide: BorderSide.none),
+        //     fillColor: Colors.purple.withOpacity(0.1),
+        //     filled: true,
+        //     prefixIcon: const Icon(Icons.person),
+        //   ),
+        // ),
+
         const SizedBox(height: 10),
         ValueListenableBuilder(
             valueListenable: ctr.passwordNotifier,
             builder: (context, val, ch) {
-              return TextFormField(
-                controller: ctr.passwordController,
-                keyboardType: TextInputType.visiblePassword,
-                decoration: InputDecoration(
+              return
+              //   CustomTextField(
+              //   controller: ctr.passwordController,
+              //   hintText: context.L.password,
+              //   prefixIcon: GestureDetector(
+              //     onTap: () => ctr.passwordNotifier.value = !ctr.passwordNotifier.value,
+              //     child: Icon(ctr.passwordNotifier.value, ? Icons.lock_open : Icons.lock_outline),
+              //   ),
+              //   obscureText: ctr.passwordNotifier.value,
+              //   onFieldSubmitted: (_) => ctr.login(),
+              // );
+                CustomTextField(
+                  controller: ctr.passwordController,
                   hintText: context.L.password,
-                  border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(18),
-                      borderSide: BorderSide.none
-                  ),
-                  fillColor: Colors.purple.withOpacity(0.1),
-                  filled: true,
                   prefixIcon: GestureDetector(
-                      onTap: () => ctr.passwordNotifier.value = !ctr.passwordNotifier.value,
-                      child: Icon(val? Icons.lock_open: Icons.lock_outline)
+                    onTap: () => ctr.passwordNotifier.value = !ctr.passwordNotifier.value,
+                    child: Icon(val ? Icons.lock_open : Icons.lock_outline),
                   ),
-                ),
-                obscureText: ctr.passwordNotifier.value,
-                onFieldSubmitted: (_) => ctr.login(),
-              );
+                  obscureText: ctr.passwordNotifier.value,
+                  onFieldSubmitted: (_) => ctr.login(),
+                );
+
+              //   TextFormField(
+              //   controller: ctr.passwordController,
+              //   keyboardType: TextInputType.visiblePassword,
+              //   decoration: InputDecoration(
+              //     hintText: context.L.password,
+              //     border: OutlineInputBorder(
+              //         borderRadius: BorderRadius.circular(18),
+              //         borderSide: BorderSide.none
+              //     ),
+              //     fillColor: Colors.purple.withOpacity(0.1),
+              //     filled: true,
+              //     prefixIcon: GestureDetector(
+              //         onTap: () => ctr.passwordNotifier.value = !ctr.passwordNotifier.value,
+              //         child: Icon(val? Icons.lock_open: Icons.lock_outline)
+              //     ),
+              //   ),
+              //   obscureText: ctr.passwordNotifier.value,
+              //   onFieldSubmitted: (_) => ctr.login(),
+              // );
+
             }
         ),
         const SizedBox(height: 10),
-        ElevatedButton(
+        Obx(() => CustomLoadingButton(
+          text: context.L.login,
+          isLoading: ctr.isLoading.value, // Boolean value to manage loading state
           onPressed: ctr.login,
-          style: ElevatedButton.styleFrom(
-            shape: const StadiumBorder(),
-            padding: const EdgeInsets.symmetric(vertical: 16),
-            backgroundColor: Colors.purple,
-          ),
-          child: Text(
-            context.L.login,
-            style: const TextStyle(fontSize: 20).white.w7,
-          ),
-        )
+        ))
+
       ],
     );
   }

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:giphyapp/app/modules/home/bindings/home_binding.dart';
 import 'package:giphyapp/app/modules/signup/models/signup_models.dart';
 import 'package:giphyapp/app/modules/signup/repository/signup_repository.dart';
+import 'package:giphyapp/app/utils/firbaseService/TabBarNavigation/tab_navigation.dart';
 
 class SignupController extends GetxController {
   final SignupRepository _signupRepository = SignupRepository();
@@ -11,7 +13,9 @@ class SignupController extends GetxController {
 
   var emailError = ''.obs;
   var passwordError = ''.obs;
-  var confirmPasswordError = ''.obs;
+  // var confirmPasswordError = ''.obs;
+  var confirmPasswordError = Rx<String?>(null);
+
 
   bool validateForm() {
     bool isValid = true;
@@ -36,8 +40,9 @@ class SignupController extends GetxController {
 
     return isValid;
   }
-
+  var isLoading = false.obs;
  void onSignup() async {
+   isLoading.value = true;
     if (validateForm()) {
       try {
         UserModel? user = await _signupRepository.signUp(
@@ -58,7 +63,7 @@ class SignupController extends GetxController {
               "Signup successful",
               snackPosition: SnackPosition.BOTTOM
             );
-            Get.offAndToNamed("/home");
+            Get.offAll(() => const TabBarNavigation(),binding: HomeBinding(),);
           }
         } else {
           Get.snackbar(
@@ -87,6 +92,12 @@ class SignupController extends GetxController {
         }
         debugPrint("Error in signup controller: $e");
       }
+      finally {
+        isLoading.value = false;
+      }
+    }
+    else {
+      isLoading.value = false;
     }
   }
 

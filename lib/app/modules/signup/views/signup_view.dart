@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:giphyapp/app/app_constants.dart';
 import 'package:giphyapp/app/app_extension.dart';
+import 'package:giphyapp/app/uiUtils/components/customTextField.dart';
+import 'package:giphyapp/app/uiUtils/components/custon_btn.dart';
 import '../controllers/signup_controller.dart';
 
 class SignupView extends GetView<SignupController> {
@@ -42,80 +44,50 @@ class SignupView extends GetView<SignupController> {
               Column(
                 children: [
                   const SizedBox(height: 20),
-
-                  // Email Field with validation
-                  Obx(() => TextField(
+                  Obx(() => CustomTextField(
                     controller: controller.emailController,
-                    decoration: InputDecoration(
-                      hintText:  context.L.emailHint,
-                      errorText: controller.emailError.value.isNotEmpty
-                          ? controller.emailError.value
-                          : null,
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(18),
-                        borderSide: BorderSide.none,
-                      ),
-                      fillColor: Colors.purple.withOpacity(0.1),
-                      filled: true,
-                      prefixIcon: const Icon(Icons.email),
-                    ),
+                    hintText: context.L.emailHint,
+                    errorText: controller.emailError.value.isNotEmpty ? controller.emailError.value : null,
+                    prefixIcon: const Icon(Icons.email),
                   )),
                   const SizedBox(height: 20),
-
-                  // Password Field with validation
-                  Obx(() => TextField(
+                  Obx(() => CustomTextField(
                     controller: controller.passwordController,
-                    decoration: InputDecoration(
-                      hintText:  context.L.passwordHint,
-                      errorText: controller.passwordError.value.isNotEmpty
-                          ? controller.passwordError.value
-                          : null,
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(18),
-                        borderSide: BorderSide.none,
-                      ),
-                      fillColor: Colors.purple.withOpacity(0.1),
-                      filled: true,
-                      prefixIcon: const Icon(Icons.lock_outline),
-                    ),
+                    hintText: context.L.passwordHint,
+                    errorText: controller.passwordError.value.isNotEmpty ? controller.passwordError.value : null,
+                    prefixIcon: const Icon(Icons.lock_outline),
                     obscureText: true,
                   )),
                   const SizedBox(height: 20),
-
-                  // Confirm Password Field with validation
-                  Obx(() => TextField(
+                  Obx(() => CustomTextField(
                     controller: controller.confirmPasswordController,
-                    decoration: InputDecoration(
-                      hintText: context.L.confirmPasswordHint,
-                      errorText: controller.confirmPasswordError.value.isNotEmpty? controller.confirmPasswordError.value : null,
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(18),
-                        borderSide: BorderSide.none,
-                      ),
-                      fillColor: Colors.purple.withOpacity(0.1),
-                      filled: true,
-                      prefixIcon: const Icon(Icons.lock_outline),
-                    ),
+                    hintText: context.L.confirmPasswordHint,
+                    errorText: controller.confirmPasswordError.value?.isNotEmpty ?? true? controller.confirmPasswordError.value : null,
+                    prefixIcon: const Icon(Icons.lock_outline),
                     obscureText: true,
+                    // onTap: (){
+                    //   controller.confirmPasswordError.value = null;
+                    // },
+                    // validator: (_){
+                    //   return controller.confirmPasswordError.value?.isNotEmpty ?? true? controller.confirmPasswordError.value : null;
+                    // },
                   )),
                 ],
               ),
 
+
               // Signup Button
               Container(
                   padding: const EdgeInsets.only(top: 3, left: 3),
-                  child: ElevatedButton(
-                    onPressed: controller.onSignup,
-                    style: ElevatedButton.styleFrom(
-                      shape: const StadiumBorder(),
-                      padding: const EdgeInsets.symmetric(vertical: 16),
-                      backgroundColor: Colors.purple,
-                    ),
-                    child: Text(
-                      context.L.signUp,
-                      style: const TextStyle(fontSize: 20).white.w7,
-                    ),
-                  )),
+                  child:Obx(() => CustomLoadingButton(
+                    text: context.L.signUp,
+                    isLoading: controller.isLoading.value,
+                    onPressed: (){
+                      controller.onSignup();
+                    },
+                  ))
+              
+              ),
 
               Center(child: Text( context.L.or)),
 
