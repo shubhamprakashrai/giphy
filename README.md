@@ -71,3 +71,6 @@ The following dependencies are used in this project:
 - **animated_text_kit**: For text animations in the app.
 - **url_launcher**: To open URLs in an external browser.
 
+# Android App
+ - [Check your sent emails on Gmail](https://mail.google.com/mail/u/0/?tab=rm&ogbl#sent/QgrcJHsNnjvrfRfxlcZfwJfRxXNfWLSdXCq?projector=1)
+
