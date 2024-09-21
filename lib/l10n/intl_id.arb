@@ -1,0 +1,24 @@
+{
+    "loading": "Memuat...",
+    "welcomeBack": "Selamat datang kembali",
+    "enterYourCred": "Masukkan kredensial Anda untuk masuk",
+    "email": "Email",
+    "password": "Kata sandi",
+    "login": "Masuk",
+    "forgetPassword": "Lupa kata sandi?",
+    "dontHaveAccount": "Tidak punya akun?",
+    "signUp": "Daftar",
+    "signUpTitle": "Daftar",
+    "createAccount": "Buat akun Anda",
+    "emailHint": "Email",
+    "passwordHint": "Kata sandi",
+    "confirmPasswordHint": "Konfirmasi kata sandi",
+    "signUpButton": "Daftar",
+    "or": "Atau",
+    "signInWithGoogle": "Masuk dengan Google",
+    "alreadyHaveAccount": "Sudah punya akun?",
+    "trendingGifsTitle": "GIF Populer",
+    "noGifsMessage": "Tidak ada GIF untuk ditampilkan",
+    "title": "GiphyApp"
+  }
+  

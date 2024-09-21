@@ -1,0 +1,24 @@
+{
+    "loading": "Loading...",
+    "welcomeBack": "Welcome Back",
+    "enterYourCred": "Enter your credentials to login",
+    "email": "Email",
+    "password": "Password",
+    "login": "Login",
+    "forgetPassword": "Forget Password?",
+    "dontHaveAccount": "Don't have an account?",
+    "signUp": "Sign Up",
+    "signUpTitle": "Sign up",
+    "createAccount": "Create your account",
+    "emailHint": "Email",
+    "passwordHint": "Password",
+    "confirmPasswordHint": "Confirm Password",
+    "signUpButton": "Sign up",
+    "or": "Or",
+    "signInWithGoogle": "Sign In with Google",
+    "alreadyHaveAccount": "Already have an account?",
+    "trendingGifsTitle": "Trending GIFs",
+    "noGifsMessage": "No GIFs to display",
+    "title": "GiphyApp"
+  }
+  

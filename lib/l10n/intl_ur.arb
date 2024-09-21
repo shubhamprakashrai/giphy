@@ -1,0 +1,24 @@
+{
+    "loading": "لوڈ ہو رہا ہے...",
+    "welcomeBack": "واپس خوش آمدید",
+    "enterYourCred": "لاگ ان کرنے کے لیے اپنی تفصیلات درج کریں",
+    "email": "ای میل",
+    "password": "پاس ورڈ",
+    "login": "لاگ ان کریں",
+    "forgetPassword": "پاس ورڈ بھول گئے؟",
+    "dontHaveAccount": "کیا آپ کا اکاؤنٹ نہیں ہے؟",
+    "signUp": "سائن اپ کریں",
+    "signUpTitle": "سائن اپ کریں",
+    "createAccount": "اپنا اکاؤنٹ بنائیں",
+    "emailHint": "ای میل",
+    "passwordHint": "پاس ورڈ",
+    "confirmPasswordHint": "پاس ورڈ کی تصدیق کریں",
+    "signUpButton": "سائن اپ کریں",
+    "or": "یا",
+    "signInWithGoogle": "گوگل کے ساتھ سائن ان کریں",
+    "alreadyHaveAccount": "کیا آپ کے پاس پہلے سے اکاؤنٹ ہے؟",
+    "trendingGifsTitle": "مقبول GIFs",
+    "noGifsMessage": "دکھانے کے لیے کوئی GIF نہیں ہے",
+    "title": "GiphyApp"
+  }
+  

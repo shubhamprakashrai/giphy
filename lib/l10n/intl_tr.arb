@@ -1,0 +1,24 @@
+{
+    "loading": "Yükleniyor...",
+    "welcomeBack": "Tekrar hoş geldiniz",
+    "enterYourCred": "Giriş yapmak için kimlik bilgilerinizi girin",
+    "email": "E-posta",
+    "password": "Şifre",
+    "login": "Giriş Yap",
+    "forgetPassword": "Şifrenizi mi unuttunuz?",
+    "dontHaveAccount": "Hesabınız yok mu?",
+    "signUp": "Kaydol",
+    "signUpTitle": "Kaydol",
+    "createAccount": "Hesabınızı oluşturun",
+    "emailHint": "E-posta",
+    "passwordHint": "Şifre",
+    "confirmPasswordHint": "Şifreyi Onaylayın",
+    "signUpButton": "Kaydol",
+    "or": "Veya",
+    "signInWithGoogle": "Google ile giriş yap",
+    "alreadyHaveAccount": "Zaten bir hesabınız var mı?",
+    "trendingGifsTitle": "Popüler GIF'ler",
+    "noGifsMessage": "Görüntülenecek GIF yok",
+    "title": "GiphyApp"
+  }
+  
