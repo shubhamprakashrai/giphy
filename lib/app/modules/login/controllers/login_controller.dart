@@ -5,7 +5,9 @@ import 'package:giphyapp/app/modules/signup/models/signup_models.dart';
 import 'package:flutter/material.dart';
 import 'package:giphyapp/app/services/app_type_def.dart';
 import 'package:giphyapp/app/services/language_service.dart';
-import 'package:giphyapp/app/utils/firbaseService/TabBarNavigation/tab_navigation.dart';
+import 'package:giphyapp/app/uiUtils/components/custom_snackbar.dart';
+
+import '../../../uiUtils/components/TabBarNavigation/tab_navigation.dart';
 
 class LoginController extends GetxController {
   final LoginRepository _loginRepository = LoginRepository();
@@ -24,31 +26,52 @@ class LoginController extends GetxController {
       try {
         UserModel? userModel = await _loginRepository.login(email, password);
         if (userModel != null) {
-          Get.snackbar("Success", "Login successful",snackPosition: SnackPosition.BOTTOM);
-          Get.offAll(() => const TabBarNavigation(),binding: HomeBinding(),);
+          CustomSnackBar.showSnackbar(
+            title: 'Success',
+            message: 'Login successful',
+            isError: false,
+          );
+          Get.offAll(
+                () => const TabBarNavigation(),
+            binding: HomeBinding(),
+          );
         } else {
-          Get.snackbar("Error", "Login failed, invalid credentials",snackPosition: SnackPosition.BOTTOM);
+          CustomSnackBar.showSnackbar(
+            title: 'Error',
+            message: 'Login failed, invalid credentials',
+            isError: true,
+          );
         }
       } catch (e) {
-        Get.snackbar("Error", "An error occurred while logging in",snackPosition: SnackPosition.BOTTOM);
+        CustomSnackBar.showSnackbar(
+          title: 'Error',
+          message: 'An error occurred while logging in',
+          isError: true,
+        );
+
         debugPrint("Login Error: $e");
-      }
-      finally {
+      } finally {
         isLoading.value = false;
       }
-    }else {
+    } else {
       isLoading.value = false;
     }
   }
 
   bool validateForm() {
     if (!GetUtils.isEmail(emailController.text.trim())) {
-      Get.snackbar("Invalid Email", "Please enter a valid email",
-          snackPosition: SnackPosition.BOTTOM);
+      CustomSnackBar.showSnackbar(
+        title: 'Invalid Email',
+        message: 'Please enter a valid email',
+        isError: true,
+      );
       return false;
     } else if (passwordController.text.trim().isEmpty) {
-      Get.snackbar("Invalid Password", "Please enter your password",
-          snackPosition: SnackPosition.BOTTOM);
+      CustomSnackBar.showSnackbar(
+        title: 'Invalid Password',
+        message: 'Please enter your password',
+        isError: true,
+      );
       return false;
     }
     return true;

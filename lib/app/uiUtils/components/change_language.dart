@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:giphyapp/app/resource/app_colors.dart';
+import 'package:giphyapp/app/utils/app_constant/app_colors.dart';
 import 'package:giphyapp/app/services/app_language.dart';
 import 'package:giphyapp/app/services/language_service.dart';
 
@@ -28,7 +28,7 @@ class _ChangeLanguageState extends State<ChangeLanguage> {
       mainAxisAlignment: MainAxisAlignment.end,
       children: [
         if(widget.usePopUp)PopupMenuButton(
-          color: AppColors.purplecolors,
+          color: AppColors.purpleColors,
           icon: const Icon(Icons.language),
           onSelected: (AppLanguage? appLanguage){
             log.d("Selected Language through pop up is ${appLanguage?.language} and code is ${appLanguage?.code}");
@@ -61,7 +61,7 @@ class _ChangeLanguageState extends State<ChangeLanguage> {
             ),
             child: DropdownButtonHideUnderline(
               child: DropdownButton<AppLanguage>(
-                dropdownColor: AppColors.purplecolors,
+                dropdownColor: AppColors.purpleColors,
                 value: language,
                 elevation: 10,
                 onChanged: (AppLanguage? newLanguage) {

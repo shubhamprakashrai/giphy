@@ -1,6 +1,5 @@
 // Localization extension on BuildContext
 import 'package:flutter/material.dart';
-import 'package:giphyapp/app/resource/app_colors.dart';
 import 'package:giphyapp/generated/l10n.dart';
 
 extension XLocalize on BuildContext {
@@ -31,6 +30,10 @@ extension TextStyleX on TextStyle? {
   TextStyle? get black => this?.copyWith(color: Colors.black);
   TextStyle? get red => this?.copyWith(color: Colors.red);
   TextStyle? get blue => this?.copyWith(color: Colors.blue);
+
+  TextStyle? get italic => this?.copyWith(fontStyle: FontStyle.italic);
+
+  TextStyle? get ellipsis => this?.copyWith(overflow: TextOverflow.ellipsis);
 }
 
 extension KBorderRadius on BorderRadius {
@@ -545,7 +548,7 @@ extension KEdgeInsets on EdgeInsets {
       const EdgeInsets.symmetric(horizontal: 20, vertical: 60);
 }
 
-extension KSizedBox on SizedBox {
+extension KSpace on SizedBox {
   // Other
   static const SizedBox kShrink = SizedBox.shrink();
   static const SizedBox kExpand = SizedBox.expand();
@@ -559,6 +562,7 @@ extension KSizedBox on SizedBox {
   static SizedBox get h6 => const SizedBox(height: 6);
   static SizedBox get h7 => const SizedBox(height: 7);
   static SizedBox get h8 => const SizedBox(height: 8);
+  static SizedBox get w8 => const SizedBox(width: 8);
   static SizedBox get h9 => const SizedBox(height: 9);
   static SizedBox get h10 => const SizedBox(height: 10);
   static SizedBox get h12 => const SizedBox(height: 12);
@@ -574,13 +578,32 @@ extension KSizedBox on SizedBox {
   static SizedBox get h24 => const SizedBox(height: 24);
   static SizedBox get h25 => const SizedBox(height: 25);
   static SizedBox get h26 => const SizedBox(height: 26);
+  static SizedBox get w26 => const SizedBox(width: 26);
   static SizedBox get h28 => const SizedBox(height: 28);
   static SizedBox get h30 => const SizedBox(height: 30);
   static SizedBox get h36 => const SizedBox(height: 36);
+  static SizedBox get w36 => const SizedBox(width: 36);
   static SizedBox get h40 => const SizedBox(height: 40);
   static SizedBox get h42 => const SizedBox(height: 42);
   static SizedBox get h44 => const SizedBox(height: 44);
   static SizedBox get h45 => const SizedBox(height: 44);
   static SizedBox get h46 => const SizedBox(height: 46);
   static SizedBox get h48 => const SizedBox(height: 48);
+}
+
+
+extension XString on String?{
+
+  String firstUpper(){
+    var name = this;
+    if(name == null || name.isEmpty){
+      return "Anonymous";
+    }
+    if(name.length == 1){
+      return name.toUpperCase();
+    }
+    return name.substring(0,1).toUpperCase() + name.substring(1);
+  }
+
+  String get fCaps => firstUpper();
 }

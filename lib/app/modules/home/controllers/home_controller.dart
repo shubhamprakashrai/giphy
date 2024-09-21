@@ -4,12 +4,16 @@ import 'package:giphyapp/app/modules/home/models/search_gifmodels.dart';
 import 'package:giphyapp/app/modules/home/repository/favoriteGifRepo.dart';
 import 'package:giphyapp/app/modules/home/repository/searchGifRepo.dart';
 import 'package:giphyapp/app/modules/home/repository/trendingGifRepo.dart';
-import 'package:giphyapp/app/resource/app_url.dart';
-import 'package:giphyapp/app/utils/firbaseService/firebaseService.dart';
+import 'package:giphyapp/app/utils/app_constant/app_url.dart';
+import 'package:giphyapp/app/services/app_type_def.dart';
+import 'package:giphyapp/app/services/language_service.dart';
+
+import '../../../services/firbaseService/firebaseService.dart';
 
 class HomeController extends GetxController {
   ScrollController scrollController = ScrollController();
   var gifUrls = <String>[].obs;
+  var gifData = <Datum>[].obs;
   var isLoading = false.obs;
   var isSearching = false.obs;
   var currentQuery = ''.obs;
@@ -47,7 +51,7 @@ class HomeController extends GetxController {
     });
   }
 
-  void fetchTrendingGifs() async {
+  FVoid fetchTrendingGifs() async {
     if (isLoading.value || isSearching.value) return;
     isLoading.value = true;
     try {
@@ -58,10 +62,12 @@ class HomeController extends GetxController {
       );
 
       if (response != null) {
-        for (int i = 0; i < response.data.length; i++) {
-          gifUrls.add(response.data[i].images.original.url);
+        for (int i = 0; i < (response.data?.length ?? 0); i++) {
+          gifUrls.add(response.data?[i].images?.original?.url ?? "");
+          gifData.add(response.data![i]);
         }
         offset += 1;
+        log.d("Offset is $offset");
       } else {
         debugPrint('Failed to fetch GIF');
       }
@@ -86,16 +92,15 @@ class HomeController extends GetxController {
     gifUrls.removeAt(index);
   }
 
-  void searchGifs(String query) async {
+  FVoid searchGifs(String query) async {
     if (isLoading.value) return;
 
     if (query.isEmpty) {
       isSearching.value = false;
       gifUrls.clear();
+      gifData.clear();
       offset = 0;
-      await Future.delayed(const Duration(milliseconds: 100));
-      fetchTrendingGifs();
-      return;
+      return fetchTrendingGifs();
     }
     if (currentQuery.value != query) {
       // If the query has changed, reset the pagination and results
@@ -118,6 +123,7 @@ class HomeController extends GetxController {
         // response.data.forEach((element) {
         //   debugPrint("element here ${element.images.}");
         // });
+        gifData.value = response.data;
         for (int i = 0; i < response.data.length; i++) {
           debugPrint("========== ${response.data[i].images!.downsized!.url}");
           gifUrls.add(response.data[i].images!.downsized!.url);
@@ -149,7 +155,8 @@ class HomeController extends GetxController {
   }
 
   final FirebaseService _firebaseService = FirebaseService();
-  void fetchFavoriteGifs() async {
+
+  FVoid fetchFavoriteGifs() async {
     debugPrint("++++++++++");
     try {
       final currentUser = _firebaseService.getCurrentUser();

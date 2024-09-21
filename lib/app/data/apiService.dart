@@ -15,7 +15,7 @@ class APIService{
   
   final logger = Logger();
    final FirebaseAuth _auth = FirebaseAuth.instance;
-  // final SessionManager sessionManager = SessionManager();
+  
 
    String? authToken;
    Map<String, String> headers = {};

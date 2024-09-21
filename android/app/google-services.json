@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "837496800290",
+    "firebase_url": "https://giphyapp-ce239-default-rtdb.firebaseio.com",
+    "project_id": "giphyapp-ce239",
+    "storage_bucket": "giphyapp-ce239.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:837496800290:android:06030253129ae761eef67b",
+        "android_client_info": {
+          "package_name": "com.giphyapp.giphyapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "837496800290-t01di25s9pe4mp0ue5qptcsra5tv96na.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.giphyapp.giphyapp",
+            "certificate_hash": "c2f3f02eaf1dfb5024701a5155152042e0519ddc"
+          }
+        },
+        {
+          "client_id": "837496800290-65q8mc31jo9o45r46ko7prps96kct09t.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCvwi8lreD6oVnhIg8YAe_vNw2rJUxQfRM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "837496800290-65q8mc31jo9o45r46ko7prps96kct09t.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "837496800290-a6hjldfoud6fek3p974k8f8p2gdv22q6.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.giphyapp.giphyapp"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

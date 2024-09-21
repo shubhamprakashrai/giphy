@@ -5,7 +5,9 @@ import 'package:giphyapp/app/modules/home/controllers/home_controller.dart';
 
 import '../../../uiUtils/components/gifGrid.dart';
 
-class FavoritepageView extends StatelessWidget {
+class FavouritePageView extends StatelessWidget {
+  const FavouritePageView({super.key});
+
   @override
   Widget build(BuildContext context) {
     final HomeController controller = Get.find<HomeController>();

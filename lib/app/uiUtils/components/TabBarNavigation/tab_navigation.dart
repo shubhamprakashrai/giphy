@@ -14,7 +14,7 @@ class _TabBarNavigationState extends State<TabBarNavigation> {
 
   final List<Widget> _pages = [
     const HomeView(),
-     FavoritepageView(),
+     FavouritePageView(),
   ];
 
   void _onItemTapped(int index) {

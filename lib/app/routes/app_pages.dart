@@ -3,6 +3,8 @@ import 'package:get/get.dart';
 import '../../splash_screen.dart';
 import '../modules/favoritepage/bindings/favoritepage_binding.dart';
 import '../modules/favoritepage/views/favoritepage_view.dart';
+import '../modules/forgetpassword/bindings/forgetpassword_binding.dart';
+import '../modules/forgetpassword/views/forgetpassword_view.dart';
 import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
 import '../modules/login/bindings/login_binding.dart';
@@ -39,8 +41,13 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.FAVORITEPAGE,
-      page: () =>  FavoritepageView(),
+      page: () => const FavouritePageView(),
       binding: FavoritepageBinding(),
+    ),
+    GetPage(
+      name: _Paths.FORGETPASSWORD,
+      page: () => const ForgetPasswordView(),
+      binding: ForgetpasswordBinding(),
     ),
   ];
 }

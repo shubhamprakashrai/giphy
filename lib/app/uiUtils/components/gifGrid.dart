@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:get/get.dart';
+import 'package:giphyapp/app/uiUtils/components/image_utils.dart';
 
 class GifGrid extends StatelessWidget {
   final List<String> gifUrls;
@@ -9,12 +9,12 @@ class GifGrid extends StatelessWidget {
   final Function(String gifUrl) isFavorite;
 
   const GifGrid({
-    Key? key,
+    super.key,
     required this.gifUrls,
     this.scrollController,
     required this.onFavoriteToggle,
     required this.isFavorite,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -29,33 +29,35 @@ class GifGrid extends StatelessWidget {
       ),
       itemBuilder: (context, index) {
         final gifUrl = gifUrls[index];
-        return Stack(
-          children: [
-            CachedNetworkImage(
-              imageUrl: gifUrl,
-              width: double.infinity,
-              height: double.infinity,
-              fit: BoxFit.fill,
-              matchTextDirection: true,
-              progressIndicatorBuilder: (context, url, downloadProgress) => SizedBox(
-                height: 50,
-                width: 50,
-                child: Center(child: CircularProgressIndicator(value: downloadProgress.progress)),
-              ),
+        return Card(
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(12),
+            child: Stack(
+              children: [
+                ImageUtils.showCachedImage(
+                  url: gifUrl,
+                  width: double.infinity,
+                  height: double.infinity,
+                  fit: BoxFit.fill,
+                ),
+                Positioned(
+                  top: 4,
+                  right: 4,
+                  child: GestureDetector(
+                    onTap: () => onFavoriteToggle(gifUrl),
+                    child: Obx(() => Icon(
+                      isFavorite(gifUrl) ? Icons.favorite : Icons.favorite_border,
+                      color: isFavorite(gifUrl) ? Colors.red : Colors.green,
+                      size: 30,
+                    )),
+                  ),
+                ),
+                // Align(
+                //   alignment: Alignment.bottomCenter,
+                //   child: Text("Hello Moto", style: const TextStyle().s14.blue.w7.italic)),
+              ],
             ),
-            Positioned(
-              top: 4,
-              right: 4,
-              child: GestureDetector(
-                onTap: () => onFavoriteToggle(gifUrl),
-                child: Obx(() => Icon(
-                  isFavorite(gifUrl) ? Icons.favorite : Icons.favorite_border,
-                  color: isFavorite(gifUrl) ? Colors.red : Colors.green,
-                  size: 30,
-                )),
-              ),
-            ),
-          ],
+          ),
         );
       },
     ).paddingSymmetric(horizontal: 10);

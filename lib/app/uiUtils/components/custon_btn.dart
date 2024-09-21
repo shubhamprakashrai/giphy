@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:giphyapp/app/app_extension.dart';
+import 'package:giphyapp/app/utils/app_constant/app_extension.dart';
+import 'package:giphyapp/app/utils/app_constant/app_colors.dart';
 
 class CustomLoadingButton extends StatelessWidget {
   final String text;
@@ -20,7 +21,7 @@ class CustomLoadingButton extends StatelessWidget {
       style: ElevatedButton.styleFrom(
         shape: const StadiumBorder(),
         padding: const EdgeInsets.symmetric(vertical: 16),
-        backgroundColor: Colors.purple,
+        backgroundColor: AppColors.purpleColors,
       ),
       child: isLoading
           ? const SizedBox(

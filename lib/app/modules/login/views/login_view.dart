@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:giphyapp/app/app_extension.dart';
+import 'package:giphyapp/app/services/firbaseService/google_login.dart';
+import 'package:giphyapp/app/uiUtils/components/loging_with_goole_btn.dart';
+import 'package:giphyapp/app/utils/app_constant/app_extension.dart';
+import 'package:giphyapp/app/modules/forgetpassword/bindings/forgetpassword_binding.dart';
+import 'package:giphyapp/app/modules/forgetpassword/views/forgetpassword_view.dart';
 import 'package:giphyapp/app/modules/signup/bindings/signup_binding.dart';
 import 'package:giphyapp/app/modules/signup/views/signup_view.dart';
+import 'package:giphyapp/app/utils/app_constant/app_colors.dart';
 import 'package:giphyapp/app/services/language_service.dart';
 import 'package:giphyapp/app/uiUtils/components/change_language.dart';
 import 'package:giphyapp/app/uiUtils/components/customTextField.dart';
@@ -29,12 +34,30 @@ class LoginView extends GetView<LoginController> {
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         const ChangeLanguage(),
-                        const SizedBox(height: 30,),
+                        const SizedBox(
+                          height: 30,
+                        ),
                         _header(context),
-                        const SizedBox(height: 10,),
+                        const SizedBox(
+                          height: 10,
+                        ),
                         _inputField(context),
-                        const SizedBox(height: 20,),
+                        const SizedBox(
+                          height: 20,
+                        ),
                         _forgotPassword(context),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        SizedBox(
+                          width: 180,
+                          child: SignInButtonGoogle(
+                            label: context.L.signInWithGoogle,
+                            onPressed: () async {
+                              await GoogleAuthService.signInWithGoogle();
+                            },
+                          ),
+                        ),
                         _signup(context),
                       ],
                     ),
@@ -43,8 +66,7 @@ class LoginView extends GetView<LoginController> {
               ),
             ),
           );
-        }
-    );
+        });
   }
 
   Widget _header(BuildContext context) {
@@ -71,74 +93,29 @@ class LoginView extends GetView<LoginController> {
           hintText: context.L.email,
           prefixIcon: const Icon(Icons.person),
         ),
-        // TextFormField(
-        //   controller: ctr.emailController,
-        //   decoration: InputDecoration(
-        //     hintText: context.L.email,
-        //     border: OutlineInputBorder(
-        //         borderRadius: BorderRadius.circular(18),
-        //         borderSide: BorderSide.none),
-        //     fillColor: Colors.purple.withOpacity(0.1),
-        //     filled: true,
-        //     prefixIcon: const Icon(Icons.person),
-        //   ),
-        // ),
-
         const SizedBox(height: 10),
         ValueListenableBuilder(
             valueListenable: ctr.passwordNotifier,
             builder: (context, val, ch) {
-              return
-              //   CustomTextField(
-              //   controller: ctr.passwordController,
-              //   hintText: context.L.password,
-              //   prefixIcon: GestureDetector(
-              //     onTap: () => ctr.passwordNotifier.value = !ctr.passwordNotifier.value,
-              //     child: Icon(ctr.passwordNotifier.value, ? Icons.lock_open : Icons.lock_outline),
-              //   ),
-              //   obscureText: ctr.passwordNotifier.value,
-              //   onFieldSubmitted: (_) => ctr.login(),
-              // );
-                CustomTextField(
-                  controller: ctr.passwordController,
-                  hintText: context.L.password,
-                  prefixIcon: GestureDetector(
-                    onTap: () => ctr.passwordNotifier.value = !ctr.passwordNotifier.value,
-                    child: Icon(val ? Icons.lock_open : Icons.lock_outline),
-                  ),
-                  obscureText: ctr.passwordNotifier.value,
-                  onFieldSubmitted: (_) => ctr.login(),
-                );
-
-              //   TextFormField(
-              //   controller: ctr.passwordController,
-              //   keyboardType: TextInputType.visiblePassword,
-              //   decoration: InputDecoration(
-              //     hintText: context.L.password,
-              //     border: OutlineInputBorder(
-              //         borderRadius: BorderRadius.circular(18),
-              //         borderSide: BorderSide.none
-              //     ),
-              //     fillColor: Colors.purple.withOpacity(0.1),
-              //     filled: true,
-              //     prefixIcon: GestureDetector(
-              //         onTap: () => ctr.passwordNotifier.value = !ctr.passwordNotifier.value,
-              //         child: Icon(val? Icons.lock_open: Icons.lock_outline)
-              //     ),
-              //   ),
-              //   obscureText: ctr.passwordNotifier.value,
-              //   onFieldSubmitted: (_) => ctr.login(),
-              // );
-
-            }
-        ),
+              return CustomTextField(
+                controller: ctr.passwordController,
+                hintText: context.L.password,
+                prefixIcon: GestureDetector(
+                  onTap: () =>
+                      ctr.passwordNotifier.value = !ctr.passwordNotifier.value,
+                  child: Icon(val ? Icons.lock_open : Icons.lock_outline),
+                ),
+                obscureText: ctr.passwordNotifier.value,
+                onFieldSubmitted: (_) => ctr.login(),
+              );
+            }),
         const SizedBox(height: 10),
         Obx(() => CustomLoadingButton(
-          text: context.L.login,
-          isLoading: ctr.isLoading.value, // Boolean value to manage loading state
-          onPressed: ctr.login,
-        ))
-
+              text: context.L.login,
+              isLoading:
+                  ctr.isLoading.value, // Boolean value to manage loading state
+              onPressed: ctr.login,
+            ))
       ],
     );
   }
@@ -146,11 +123,14 @@ class LoginView extends GetView<LoginController> {
   Widget _forgotPassword(BuildContext context) {
     return TextButton(
       onPressed: () {
-        // Forgot password logic here
+        Get.to(
+          () => const ForgetPasswordView(),
+          binding: ForgetpasswordBinding(),
+        );
       },
       child: Text(
         context.L.forgetPassword,
-        style: const TextStyle(color: Colors.purple),
+        style: const TextStyle(color: AppColors.purpleColors),
       ),
     );
   }
@@ -163,11 +143,11 @@ class LoginView extends GetView<LoginController> {
         TextButton(
             onPressed: () {
               // Navigate to sign up page
-              Get.off(const SignupView(),binding: SignupBinding());
+              Get.off(const SignupView(), binding: SignupBinding());
             },
             child: Text(
               context.L.signUp,
-              style: const TextStyle(color: Colors.purple),
+              style: const TextStyle(color: AppColors.purpleColors),
             ))
       ],
     );

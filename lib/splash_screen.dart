@@ -2,15 +2,17 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
-import 'package:giphyapp/app/app_constants.dart';
-import 'package:giphyapp/app/app_extension.dart';
+import 'package:giphyapp/app/utils/app_constant/app_constants.dart';
+import 'package:giphyapp/app/utils/app_constant/app_extension.dart';
 import 'package:giphyapp/app/modules/home/bindings/home_binding.dart';
 import 'package:giphyapp/app/modules/login/bindings/login_binding.dart';
 import 'package:giphyapp/app/modules/login/views/login_view.dart';
-import 'package:giphyapp/app/utils/firbaseService/TabBarNavigation/tab_navigation.dart';
-import 'package:giphyapp/app/utils/firbaseService/firebaseService.dart';
+
 
 import 'package:lottie/lottie.dart';
+
+import 'app/services/firbaseService/firebaseService.dart';
+import 'app/uiUtils/components/TabBarNavigation/tab_navigation.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -35,14 +37,13 @@ class _SplashScreenState extends State<SplashScreen>
     );
     _fadeAnimation = Tween<double>(begin: 0.0, end: 1.0).animate(_fadeController);
     _fadeController.forward();
-    Timer(const Duration(seconds: 4), () {
+    Timer(const Duration(milliseconds: 1100), () {
       _checkAuthenticationStatus();
     });
   }
 
   void _checkAuthenticationStatus() {
     User? user = FirebaseService().getCurrentUser();
-
     if (user != null) {
       Get.offAll(() => const TabBarNavigation(),binding: HomeBinding(),);
     } else {

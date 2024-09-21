@@ -5,6 +5,11 @@ import 'package:giphyapp/app/modules/signup/models/signup_models.dart';
 import 'package:logger/logger.dart';
 
 class FirebaseService {
+
+  FirebaseService._privateConstructor();
+  static final FirebaseService _instance = FirebaseService._privateConstructor();
+  factory FirebaseService() => _instance;
+  
   final logger = Logger();
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
@@ -131,6 +136,16 @@ Future<void> addFavoriteGif(String gifUrl, String userId) async {
       return emojiUrls;
     } catch (e) {
       throw Exception('Error fetching favorite Gif $e');
+    }
+  }
+
+
+  Future<void> resetPassword(String email) async {
+    try {
+      await _auth.sendPasswordResetEmail(email: email);
+    } catch (e) {
+      logger.e('Error sending password reset email: $e');
+      throw Exception('password-reset-error');
     }
   }
 

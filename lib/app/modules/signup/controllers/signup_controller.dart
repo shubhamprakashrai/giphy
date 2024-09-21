@@ -3,7 +3,9 @@ import 'package:get/get.dart';
 import 'package:giphyapp/app/modules/home/bindings/home_binding.dart';
 import 'package:giphyapp/app/modules/signup/models/signup_models.dart';
 import 'package:giphyapp/app/modules/signup/repository/signup_repository.dart';
-import 'package:giphyapp/app/utils/firbaseService/TabBarNavigation/tab_navigation.dart';
+import 'package:giphyapp/app/uiUtils/components/custom_snackbar.dart';
+
+import '../../../uiUtils/components/TabBarNavigation/tab_navigation.dart';
 
 class SignupController extends GetxController {
   final SignupRepository _signupRepository = SignupRepository();
@@ -52,42 +54,39 @@ class SignupController extends GetxController {
 
         if (user != null) {
           if (user.userAlreadyExists) {
-            Get.snackbar(
-              "Error", 
-              "User already exists, please log in.",
-              snackPosition: SnackPosition.BOTTOM
+            CustomSnackBar.showSnackbar(
+              title: 'Error',
+              message: 'User already exists, please log in.',
+              isError: true,
             );
           } else {
-            Get.snackbar(
-              "Success", 
-              "Signup successful",
-              snackPosition: SnackPosition.BOTTOM
+            CustomSnackBar.showSnackbar(
+              title: 'Success',
+              message: 'Signup successful',
+              isError: false,
             );
             Get.offAll(() => const TabBarNavigation(),binding: HomeBinding(),);
           }
         } else {
-          Get.snackbar(
-            "Error", 
-            "Signup failed",
-            snackPosition: SnackPosition.BOTTOM
+          CustomSnackBar.showSnackbar(
+            title: 'Error',
+            message: 'Signup failed',
+            isError: true,
           );
         }
 
       } catch (e) {
         if (e.toString() == 'Exception: email-already-in-use') {
-          Get.snackbar(
-            "Email already in use",
-            "The email is already registered. Please log in instead.",
-            snackPosition: SnackPosition.BOTTOM,
-            duration: const Duration(seconds: 3),
-            backgroundColor: Colors.red,
-            colorText: Colors.white,
+          CustomSnackBar.showSnackbar(
+            title: 'Email already in use',
+            message: 'The email is already registered. Please log in instead.',
+            isError: true,
           );
         } else {
-          Get.snackbar(
-            "Error", 
-            "An unexpected error occurred. Please try again.",
-            snackPosition: SnackPosition.BOTTOM
+          CustomSnackBar.showSnackbar(
+            title: 'Error',
+            message: 'An unexpected error occurred. Please try again.',
+            isError: true,
           );
         }
         debugPrint("Error in signup controller: $e");

@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:giphyapp/app/data/apiService.dart';
 import 'package:giphyapp/app/modules/home/models/search_gifmodels.dart';
-import 'package:giphyapp/app/resource/app_url.dart';
+import 'package:giphyapp/app/utils/app_constant/app_url.dart';
 
 class SearchGifRepo {
+  SearchGifRepo._privateConstructor();
+  static final SearchGifRepo _instance = SearchGifRepo._privateConstructor();
+  factory SearchGifRepo() => _instance;
   static final _apiService = APIService();
 
   Future<GifModels?> getSearchGif(

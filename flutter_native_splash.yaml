@@ -1,0 +1,18 @@
+
+# To generate a new splash screen run the below command
+# dart run flutter_native_splash:create
+flutter_native_splash:
+  color: "#BA68C8"
+  image: assets/app_logo.png
+#  branding: assets/dart.png
+  color_dark: "#BA68C8"
+  image_dark: assets/app_logo.png
+#  branding_dark: assets/dart.png
+
+  android_12:
+    image: assets/app_logo.png
+    icon_background_color: "#BA68C8"
+    image_dark: assets/app_logo.png
+    icon_background_color_dark: "#BA68C8"
+
+  web: false

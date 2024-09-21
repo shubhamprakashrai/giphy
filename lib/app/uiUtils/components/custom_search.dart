@@ -1,15 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:giphyapp/app/resource/app_colors.dart';
+import 'package:giphyapp/app/utils/app_constant/app_colors.dart';
 
 class SearchPage extends StatefulWidget {
-  final void Function(String) onSearch;
-  final VoidCallback? onClear;
+  final void Function(String)? onSearch;
 
   const SearchPage({
     super.key,
     required this.onSearch,
-    this.onClear,
   });
 
   @override
@@ -17,12 +15,12 @@ class SearchPage extends StatefulWidget {
 }
 
 class _SearchPageState extends State<SearchPage> {
-  final TextEditingController _searchController = TextEditingController();
+  late final TextEditingController _searchController;
 
   @override
   void initState() {
+    _searchController = TextEditingController();
     super.initState();
-    _searchController.addListener(_onSearchTextChanged);
   }
 
   @override
@@ -31,52 +29,44 @@ class _SearchPageState extends State<SearchPage> {
     super.dispose();
   }
 
-  void _onSearchTextChanged() {
-    final query = _searchController.text;
-    widget.onSearch(query);
-  }
-
-  void _clearSearch() {
-    _searchController.clear();
-    if (widget.onClear != null) {
-      widget.onClear!();
-    }
-  }
-
   final InputBorder borderDecoration = const OutlineInputBorder(
     borderRadius: BorderRadius.all(Radius.circular(10)),
-    borderSide: BorderSide(color: Colors.white),
+    borderSide: BorderSide(color: AppColors.white),
   );
 
   @override
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.all(5),
+      decoration: BoxDecoration(
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.10),
+            spreadRadius: 0,
+            blurRadius: 10,
+            offset: const Offset(0, 4),
+          )
+        ]
+      ),
       child: TextField(
         controller: _searchController,
-        cursorColor: AppColors.purplecolors,
+        cursorColor: AppColors.purpleColors,
+        onChanged: widget.onSearch,
         textAlignVertical: TextAlignVertical.center,
         decoration: InputDecoration(
           contentPadding: const EdgeInsets.symmetric(vertical: 12),
           hintText: 'Search GIFs',
           hintStyle: const TextStyle(
             color: Color(0xFFB7B7B7),
-            fontFamily: 'PacaembuMedium',
             fontSize: 14,
           ),
-          fillColor: Colors.white,
+          fillColor: AppColors.white,
           filled: true,
           isDense: true,
           prefixIcon: Padding(
             padding: EdgeInsets.symmetric(horizontal: Get.width * 0.04),
             child: const Icon(Icons.search),
           ),
-          suffixIcon: _searchController.text.isNotEmpty
-              ? IconButton(
-                  icon: const Icon(Icons.clear),
-                  onPressed: _clearSearch,
-                )
-              : null,
           enabledBorder: borderDecoration,
           focusedBorder: borderDecoration,
           border: borderDecoration,

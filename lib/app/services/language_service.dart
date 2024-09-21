@@ -1,7 +1,7 @@
 import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:giphyapp/app/app_constants.dart';
+import 'package:giphyapp/app/utils/app_constant/app_constants.dart';
 import 'package:giphyapp/app/services/app_language.dart';
 import 'package:giphyapp/app/services/app_type_def.dart';
 import 'package:giphyapp/app/services/base_service.dart';

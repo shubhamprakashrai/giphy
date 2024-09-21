@@ -1,8 +1,14 @@
 
-import 'package:giphyapp/app/utils/firbaseService/firebaseService.dart';
 
+
+import '../../../services/firbaseService/firebaseService.dart';
 
 class FavoriteGifRepository {
+
+  FavoriteGifRepository._privateConstructor();
+  static final FavoriteGifRepository _instance = FavoriteGifRepository._privateConstructor();
+  factory FavoriteGifRepository() => _instance;
+
   final FirebaseService _firebaseService = FirebaseService();
 
   Future<void> addGifToFavorites(String gifUrl) async {

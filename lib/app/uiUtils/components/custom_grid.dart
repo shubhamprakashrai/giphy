@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:giphyapp/app/utils/app_constant/app_colors.dart';
 
 class CustomNormalGridView extends StatelessWidget {
   final List<String> mediaFiles;
@@ -63,7 +64,7 @@ class CustomNormalGridView extends StatelessWidget {
                   },
                   errorBuilder: (context, error, stackTrace) => const Icon(
                     Icons.error,
-                    color: Colors.red,
+                    color: AppColors.red,
                   ),
                 ),
               ),
@@ -74,7 +75,7 @@ class CustomNormalGridView extends StatelessWidget {
                   onTap: () => onFavorite(gifUrl), 
                   child: Icon(
                     isFavorite(gifUrl) ? Icons.favorite : Icons.favorite_border, 
-                    color: isFavorite(gifUrl) ? Colors.red : Colors.green,
+                    color: isFavorite(gifUrl) ? AppColors.red: AppColors.green,
                     size: 30,
                   ),
                 ),

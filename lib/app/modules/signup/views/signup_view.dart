@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:giphyapp/app/app_constants.dart';
-import 'package:giphyapp/app/app_extension.dart';
+import 'package:giphyapp/app/services/firbaseService/google_login.dart';
+import 'package:giphyapp/app/uiUtils/components/loging_with_goole_btn.dart';
+import 'package:giphyapp/app/utils/app_constant/app_extension.dart';
+import 'package:giphyapp/app/utils/app_constant/app_colors.dart';
 import 'package:giphyapp/app/uiUtils/components/customTextField.dart';
 import 'package:giphyapp/app/uiUtils/components/custon_btn.dart';
 import '../controllers/signup_controller.dart';
@@ -92,49 +94,11 @@ class SignupView extends GetView<SignupController> {
               Center(child: Text( context.L.or)),
 
               // Sign In with Google Button
-              Container(
-                height: 45,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(25),
-                  border: Border.all(
-                    color: Colors.purple,
-                  ),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.white.withOpacity(0.5),
-                      spreadRadius: 1,
-                      blurRadius: 1,
-                      offset: const Offset(0, 1),
-                    ),
-                  ],
-                ),
-                child: TextButton(
-                  onPressed: () {},
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      // Container(
-                      //   height: 30.0,
-                      //   width: 30.0,
-                      //   decoration: const BoxDecoration(
-                      //     image: DecorationImage(
-                      //         image: AssetImage(
-                      //             AppImages.googleLogo),
-                      //         fit: BoxFit.cover),
-                      //     shape: BoxShape.circle,
-                      //   ),
-                      // ),
-                      // const SizedBox(width: 18),
-                      Text(
-                        context.L.signInWithGoogle,
-                        style: const TextStyle(
-                          fontSize: 16,
-                          color: Colors.purple,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
+              SignInButtonGoogle(
+                label: context.L.signInWithGoogle,
+                onPressed: () async {
+                  await GoogleAuthService.signInWithGoogle();
+                },
               ),
 
               // Already have an account? Login
@@ -148,7 +112,7 @@ class SignupView extends GetView<SignupController> {
                       },
                       child: Text(
                         context.L.login,
-                        style: const TextStyle(color: Colors.purple),
+                        style: const TextStyle(color: AppColors.purpleColors),
                       ))
                 ],
               )
