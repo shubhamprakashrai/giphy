@@ -66,7 +66,7 @@ class HomeController extends GetxController {
           gifUrls.add(response.data?[i].images?.original?.url ?? "");
           gifData.add(response.data![i]);
         }
-        offset += 1;
+        offset += limit;
         log.d("Offset is $offset");
       } else {
         debugPrint('Failed to fetch GIF');
