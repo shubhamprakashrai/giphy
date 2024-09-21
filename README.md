@@ -71,10 +71,3 @@ The following dependencies are used in this project:
 - **animated_text_kit**: For text animations in the app.
 - **url_launcher**: To open URLs in an external browser.
 
-## Installation
-
-1. Clone the repository:
-
-```bash
-git clone https://github.com/yourusername/giphyapp.git
-cd giphyapp
