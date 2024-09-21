@@ -71,6 +71,17 @@ The following dependencies are used in this project:
 - **animated_text_kit**: For text animations in the app.
 - **url_launcher**: To open URLs in an external browser.
 
+# Flutter Project Version Support
+
+## Supported Flutter Version
+
+The project supports the following Flutter version:
+
+- **Flutter Version**: `3.22.3`
+  - This version is used to ensure compatibility and stability across the project.
+  - We recommend using **Flutter Version Management (FVM)** for managing and switching between Flutter versions easily.
+---
+
 ### Android App
  - [Download](https://drive.google.com/file/d/1xDV_vR9VGbfqj90vttf7BT3Dg1bWkVbF/view?usp=sharing)
 
