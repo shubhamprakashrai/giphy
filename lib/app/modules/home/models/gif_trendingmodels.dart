@@ -472,11 +472,11 @@ final ratingValues = EnumValues({
 });
 
 enum Type {
-  GIF
+  gif
 }
 
 final typeValues = EnumValues({
-  "gif": Type.GIF
+  "gif": Type.gif
 });
 
 class User {
