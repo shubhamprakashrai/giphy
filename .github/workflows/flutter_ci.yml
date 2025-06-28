@@ -47,4 +47,3 @@ jobs:
             --token ${{ secrets.FIREBASE_TOKEN }} \
             --groups testers \
             --release-notes "Automated build from GitHub Actions"
-
