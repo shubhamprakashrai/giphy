@@ -1,9 +1,10 @@
 
 import 'package:flutter/foundation.dart';
-import 'package:giphyapp/app/data/apiService.dart';
 import 'package:giphyapp/app/modules/home/models/gif_trendingmodels.dart';
 import 'package:giphyapp/app/utils/app_constant/app_url.dart';
 import 'package:giphyapp/app/services/language_service.dart';
+
+import '../../../data/api_service.dart';
 
 class TrendingGif {
 

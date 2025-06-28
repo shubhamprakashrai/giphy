@@ -1,6 +1,6 @@
 import 'package:giphyapp/app/modules/signup/models/signup_models.dart';
 
-import '../../../services/firbaseService/firebaseService.dart';
+import '../../../services/firbaseService/firebase_service.dart';
 
 
 class LoginRepository {

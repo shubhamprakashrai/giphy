@@ -4,19 +4,19 @@ part of 'app_pages.dart';
 abstract class Routes {
   Routes._();
   static const splash = _Paths.splash;
-  static const LOGIN = _Paths.LOGIN;
-  static const SIGNUP = _Paths.SIGNUP;
+  static const login = _Paths.login;
+  static const signup = _Paths.signup;
   static const home = _Paths.home;
-  static const FAVORITEPAGE = _Paths.FAVORITEPAGE;
-  static const FORGETPASSWORD = _Paths.FORGETPASSWORD;
+  static const favoritePage = _Paths.favoritePage;
+  static const forgetPassword = _Paths.forgetPassword;
 }
 
 abstract class _Paths {
   _Paths._();
   static const splash = '/splash';
-  static const LOGIN = '/login';
-  static const SIGNUP = '/signup';
+  static const login = '/login';
+  static const signup = '/signup';
   static const home = '/home';
-  static const FAVORITEPAGE = '/favoritepage';
-  static const FORGETPASSWORD = '/forgetpassword';
+  static const favoritePage = '/favoritepage';
+  static const forgetPassword = '/forgetpassword';
 }

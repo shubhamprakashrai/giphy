@@ -10,7 +10,7 @@ import 'package:giphyapp/app/modules/signup/views/signup_view.dart';
 import 'package:giphyapp/app/utils/app_constant/app_colors.dart';
 import 'package:giphyapp/app/services/language_service.dart';
 import 'package:giphyapp/app/uiUtils/components/change_language.dart';
-import 'package:giphyapp/app/uiUtils/components/customTextField.dart';
+import 'package:giphyapp/app/uiUtils/components/custom_text_field.dart';
 import 'package:giphyapp/app/uiUtils/components/custon_btn.dart';
 import '../controllers/login_controller.dart';
 

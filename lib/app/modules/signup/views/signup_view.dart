@@ -4,7 +4,7 @@ import 'package:giphyapp/app/services/firbaseService/google_login.dart';
 import 'package:giphyapp/app/uiUtils/components/loging_with_goole_btn.dart';
 import 'package:giphyapp/app/utils/app_constant/app_extension.dart';
 import 'package:giphyapp/app/utils/app_constant/app_colors.dart';
-import 'package:giphyapp/app/uiUtils/components/customTextField.dart';
+import 'package:giphyapp/app/uiUtils/components/custom_text_field.dart';
 import 'package:giphyapp/app/uiUtils/components/custon_btn.dart';
 import '../controllers/signup_controller.dart';
 

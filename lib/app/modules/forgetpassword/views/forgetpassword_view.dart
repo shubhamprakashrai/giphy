@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:giphyapp/app/uiUtils/components/customTextField.dart';
+import 'package:giphyapp/app/uiUtils/components/custom_text_field.dart';
 import 'package:giphyapp/app/uiUtils/components/custon_btn.dart';
 import 'package:giphyapp/app/utils/app_constant/app_colors.dart';
 import '../controllers/forgetpassword_controller.dart';

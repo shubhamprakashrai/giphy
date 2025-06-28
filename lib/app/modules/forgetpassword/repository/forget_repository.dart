@@ -1,7 +1,7 @@
 
 
 
-import '../../../services/firbaseService/firebaseService.dart';
+import '../../../services/firbaseService/firebase_service.dart';
 
 class ForgetRepository {
   final FirebaseService _firebaseService=FirebaseService();

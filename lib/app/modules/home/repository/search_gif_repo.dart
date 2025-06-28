@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:giphyapp/app/data/apiService.dart';
+
 import 'package:giphyapp/app/modules/home/models/search_gifmodels.dart';
 import 'package:giphyapp/app/utils/app_constant/app_url.dart';
-
+import '../../../data/api_service.dart';
 class SearchGifRepo {
   SearchGifRepo._privateConstructor();
   static final SearchGifRepo _instance = SearchGifRepo._privateConstructor();
@@ -29,7 +29,7 @@ class SearchGifRepo {
         // print("here data from model ${a.data}");
         return GifModels.fromJson(response);
       } else {
-        print('Error: Failed to fetch getSearchGif GIFs');
+        debugPrint('Error: Failed to fetch getSearchGif GIFs');
         return null;
       }
     } catch (e) {

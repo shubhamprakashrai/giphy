@@ -43,14 +43,14 @@ class GiphyResponse {
 
 
 class Analytics {
-  final Onclick? onload;
+  final Onclick? onLoad;
   final Onclick? onclick;
-  final Onclick? onsent;
+  final Onclick? onSent;
 
   Analytics({
-    this.onload,
+    this.onLoad,
     this.onclick,
-    this.onsent,
+    this.onSent,
   });
 
   Analytics copyWith({
@@ -59,21 +59,21 @@ class Analytics {
     Onclick? onsent,
   }) =>
       Analytics(
-        onload: onload ?? this.onload,
+        onLoad: onload ?? this.onLoad,
         onclick: onclick ?? this.onclick,
-        onsent: onsent ?? this.onsent,
+        onSent: onsent ?? this.onSent,
       );
 
   factory Analytics.fromJson(Map<String, dynamic> json) => Analytics(
-    onload: json["onload"] == null ? null : Onclick.fromJson(json["onload"]),
+    onLoad: json["onload"] == null ? null : Onclick.fromJson(json["onload"]),
     onclick: json["onclick"] == null ? null : Onclick.fromJson(json["onclick"]),
-    onsent: json["onsent"] == null ? null : Onclick.fromJson(json["onsent"]),
+    onSent: json["onsent"] == null ? null : Onclick.fromJson(json["onsent"]),
   );
 
   Map<String, dynamic> toJson() => {
-    "onload": onload?.toJson(),
+    "onload": onLoad?.toJson(),
     "onclick": onclick?.toJson(),
-    "onsent": onsent?.toJson(),
+    "onsent": onSent?.toJson(),
   };
 }
 

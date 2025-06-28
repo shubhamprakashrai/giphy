@@ -42,7 +42,7 @@ class GifGridDetailed extends StatelessWidget {
             borderRadius: BorderRadius.circular(12),
             child: InkWell(
               onTap: (){
-                if(((gifData.user?.username?.isEmpty ??true)? gifData.user?.displayName.fCaps : gifData.user?.username.fCaps ?? "") == null){
+                if(((gifData.user?.username.isEmpty ??true)? gifData.user?.displayName.fCaps : gifData.user?.username.fCaps ?? "") == null){
                   return;
                 }
                 showModalBottomSheet(context: context, builder: (context) => BottomSheet(

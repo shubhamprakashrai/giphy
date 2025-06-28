@@ -11,7 +11,7 @@ import 'package:giphyapp/app/modules/login/views/login_view.dart';
 
 import 'package:lottie/lottie.dart';
 
-import 'app/services/firbaseService/firebaseService.dart';
+import 'app/services/firbaseService/firebase_service.dart';
 import 'app/uiUtils/components/TabBarNavigation/tab_navigation.dart';
 
 class SplashScreen extends StatefulWidget {

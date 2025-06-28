@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:giphyapp/app/modules/home/controllers/home_controller.dart';
 
 
-import '../../../uiUtils/components/gifGrid.dart';
+import '../../../uiUtils/components/gif_grid.dart';
 
 class FavouritePageView extends StatelessWidget {
   const FavouritePageView({super.key});

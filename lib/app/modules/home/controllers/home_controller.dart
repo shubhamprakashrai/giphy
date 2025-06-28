@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:giphyapp/app/modules/home/models/search_gifmodels.dart';
-import 'package:giphyapp/app/modules/home/repository/favoriteGifRepo.dart';
-import 'package:giphyapp/app/modules/home/repository/searchGifRepo.dart';
-import 'package:giphyapp/app/modules/home/repository/trendingGifRepo.dart';
+import 'package:giphyapp/app/modules/home/repository/favorite_gif_repo.dart';
+import 'package:giphyapp/app/modules/home/repository/search_gif_repo.dart';
+import 'package:giphyapp/app/modules/home/repository/trending_gif_repo.dart';
 import 'package:giphyapp/app/utils/app_constant/app_url.dart';
 import 'package:giphyapp/app/services/app_type_def.dart';
 import 'package:giphyapp/app/services/language_service.dart';
 
-import '../../../services/firbaseService/firebaseService.dart';
+import '../../../services/firbaseService/firebase_service.dart';
 
 class HomeController extends GetxController {
   ScrollController scrollController = ScrollController();

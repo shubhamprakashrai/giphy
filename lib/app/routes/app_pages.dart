@@ -25,12 +25,12 @@ class AppPages {
       page: () => const SplashScreen(),
     ),
     GetPage(
-      name: _Paths.LOGIN,
+      name: _Paths.login,
       page: () => const LoginView(),
       binding: LoginBinding(),
     ),
     GetPage(
-      name: _Paths.SIGNUP,
+      name: _Paths.signup,
       page: () => const SignupView(),
       binding: SignupBinding(),
     ),
@@ -40,12 +40,12 @@ class AppPages {
       binding: HomeBinding(),
     ),
     GetPage(
-      name: _Paths.FAVORITEPAGE,
+      name: _Paths.favoritePage,
       page: () => const FavouritePageView(),
       binding: FavoritepageBinding(),
     ),
     GetPage(
-      name: _Paths.FORGETPASSWORD,
+      name: _Paths.forgetPassword,
       page: () => const ForgetPasswordView(),
       binding: ForgetpasswordBinding(),
     ),
