@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:giphyapp/app/modules/home/models/search_gifmodels.dart';
-import 'package:giphyapp/app/services/language_service.dart';
 import 'package:giphyapp/app/uiUtils/components/animated_text.dart';
 import 'package:giphyapp/app/uiUtils/components/image_utils.dart';
 import 'package:giphyapp/app/utils/app_constant/app_colors.dart';
@@ -35,88 +34,109 @@ class GifGridDetailed extends StatelessWidget {
         childAspectRatio: 1.0,
       ),
       itemBuilder: (context, index) {
-        log.d("Image Data is ${gifDataList[index].url}");
-        var gifData = gifDataList[index];
+        final gifData = gifDataList[index];
+        final user = gifData.user;
+        final username = user?.username;
+        final displayName = user?.displayName;
+        final avatarUrl = user?.avatarUrl ?? "";
+        final instagramUrl = user?.instagramUrl ?? "";
+        final resolvedName = (username?.isEmpty ?? true)
+            ? displayName?.fCaps ?? ""
+            : username!.fCaps;
+
+        if (resolvedName.isEmpty) return const SizedBox.shrink();
+
         return Card(
           child: ClipRRect(
             borderRadius: BorderRadius.circular(12),
             child: InkWell(
-              onTap: (){
-                if(((gifData.user?.username.isEmpty ??true)? gifData.user?.displayName.fCaps : gifData.user?.username.fCaps ?? "") == null){
-                  return;
-                }
-                showModalBottomSheet(context: context, builder: (context) => BottomSheet(
-                  onClosing: (){},
-                  builder: (context) => Container(
-                    color: AppColors.purpleColors.withOpacity(0.1),
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 10),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Flexible(
-                                child: SizedBox(
-                                  height: 50,
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    children: [
-                                      Container(
-                                        height: 30,
-                                        width: 30,
-                                        decoration: BoxDecoration(
+              onTap: () {
+                showModalBottomSheet(
+                  context: context,
+                  builder: (context) => BottomSheet(
+                    onClosing: () {},
+                    builder: (context) => Container(
+                      color: AppColors.purpleColors.withOpacity(0.1),
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 10),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            // Top user info row
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Flexible(
+                                  child: SizedBox(
+                                    height: 50,
+                                    child: Row(
+                                      children: [
+                                        // Avatar
+                                        Container(
+                                          height: 30,
+                                          width: 30,
+                                          decoration: BoxDecoration(
                                             border: Border.all(color: AppColors.white, width: 2),
-                                            borderRadius: BorderRadius.circular(1000)
-                                        ),
-                                        child: ClipOval(
-                                            child: ImageUtils.showCachedImage(
-                                                url: gifDataList[index].user?.avatarUrl ?? "",
-                                                errorWidget: const Icon(Icons.person, color: AppColors.purpleColors,)
-                                            )
-                                        ),
-                                      ),
-                                      KSpace.w8,
-                                      Text(((gifData.user?.username?.isEmpty ??true)? gifData.user?.displayName.fCaps : gifData.user?.username.fCaps ?? "").toString(), style: const TextStyle().black.s14.w7.ellipsis,),
-                                      if(gifData.user?.instagramUrl?.isNotEmpty ?? false)KSpace.w8,
-                                      if(gifData.user?.instagramUrl?.isNotEmpty ?? false)Container(
-                                        decoration: BoxDecoration(
-                                          border: Border.all(color: Colors.lightBlueAccent, width: 1),
-                                          borderRadius: BorderRadius.circular(1000)
-                                        ),
-                                        child: InkWell(
-                                          onTap: (){
-                                            launchUrl(Uri.parse(gifData.user?.instagramUrl ?? ""), mode: LaunchMode.inAppBrowserView);
-                                          },
-                                          child: ClipRRect(
                                             borderRadius: BorderRadius.circular(1000),
+                                          ),
+                                          child: ClipOval(
                                             child: ImageUtils.showCachedImage(
-                                              url: AppUrl.instagramUrl,
-                                              height: 30,
-                                              width: 30,
-                                              fit: BoxFit.fill
+                                              url: avatarUrl,
+                                              errorWidget: const Icon(Icons.person, color: AppColors.purpleColors),
                                             ),
                                           ),
                                         ),
-                                      ),
-                                    ],
+                                        KSpace.w8,
+                                        // Username
+                                        Text(
+                                          resolvedName,
+                                          style: const TextStyle().black.s14.w7.ellipsis,
+                                        ),
+                                        if (instagramUrl.isNotEmpty) KSpace.w8,
+                                        // Instagram link
+                                        if (instagramUrl.isNotEmpty)
+                                          Container(
+                                            decoration: BoxDecoration(
+                                              border: Border.all(color: Colors.lightBlueAccent, width: 1),
+                                              borderRadius: BorderRadius.circular(1000),
+                                            ),
+                                            child: InkWell(
+                                              onTap: () {
+                                                launchUrl(
+                                                  Uri.parse(instagramUrl),
+                                                  mode: LaunchMode.inAppBrowserView,
+                                                );
+                                              },
+                                              child: ClipRRect(
+                                                borderRadius: BorderRadius.circular(1000),
+                                                child: ImageUtils.showCachedImage(
+                                                  url: AppUrl.instagramUrl,
+                                                  height: 30,
+                                                  width: 30,
+                                                  fit: BoxFit.fill,
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                      ],
+                                    ),
                                   ),
                                 ),
-                              ),
-                            ],
-                          ),
-                          Text(gifDataList[index].user?.description ?? ""),
-                        ],
+                              ],
+                            ),
+                            Text(user?.description ?? ""),
+                          ],
+                        ),
                       ),
                     ),
-                  )
-                ));
+                  ),
+                );
               },
               child: Stack(
                 children: [
+                  // GIF image
                   ImageUtils.showCachedImage(
-                    url: gifDataList[index].images?.original?.url,
+                    url: gifData.images?.original?.url,
                     width: double.infinity,
                     height: double.infinity,
                     fit: BoxFit.fill,
@@ -124,6 +144,7 @@ class GifGridDetailed extends StatelessWidget {
                   Column(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
+                      // Top overlay with avatar and username
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -133,40 +154,51 @@ class GifGridDetailed extends StatelessWidget {
                               child: Padding(
                                 padding: const EdgeInsets.symmetric(horizontal: 10),
                                 child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.start,
                                   children: [
+                                    // Avatar
                                     Container(
                                       height: 30,
                                       width: 30,
                                       decoration: BoxDecoration(
-                                          border: Border.all(color: AppColors.white, width: 2),
-                                          borderRadius: BorderRadius.circular(1000)
+                                        border: Border.all(color: AppColors.white, width: 2),
+                                        borderRadius: BorderRadius.circular(1000),
                                       ),
                                       child: ClipOval(
-                                          child: ImageUtils.showCachedImage(
-                                              url: gifDataList[index].user?.avatarUrl ?? "",
-                                              errorWidget: const Icon(Icons.person, color: AppColors.purpleColors,)
-                                          )
+                                        child: ImageUtils.showCachedImage(
+                                          url: avatarUrl,
+                                          errorWidget: const Icon(Icons.person, color: AppColors.purpleColors),
+                                        ),
                                       ),
                                     ),
                                     KSpace.w8,
-                                    Flexible(child: AnimatedTextWithPersistence(displayName: gifData.user?.username.fCaps ?? "", username: gifData.user?.displayName.fCaps ?? "",)),
+                                    // Animated username display
+                                    Flexible(
+                                      child: AnimatedTextWithPersistence(
+                                        displayName: username?.fCaps ?? "",
+                                        username: displayName?.fCaps ?? "",
+                                      ),
+                                    ),
                                   ],
                                 ),
                               ),
                             ),
                           ),
+                          // Favorite button
                           GestureDetector(
-                            onTap: () => onFavoriteToggle(gifDataList[index].images?.original?.url ?? ""),
+                            onTap: () => onFavoriteToggle(gifData.images?.original?.url ?? ""),
                             child: Obx(() => Icon(
-                              isFavorite(gifDataList[index].images?.original?.url ?? "") ? Icons.favorite : Icons.favorite_border,
-                              color: isFavorite(gifDataList[index].images?.original?.url ?? "") ? Colors.red : Colors.redAccent,
-                              size: 30,
-                            )),
+                                  isFavorite(gifData.images?.original?.url ?? "")
+                                      ? Icons.favorite
+                                      : Icons.favorite_border,
+                                  color: isFavorite(gifData.images?.original?.url ?? "")
+                                      ? Colors.red
+                                      : Colors.redAccent,
+                                  size: 30,
+                                )),
                           ),
                         ],
                       ),
-                      KSpace.kShrink
+                      KSpace.kShrink,
                     ],
                   ),
                 ],
@@ -177,7 +209,4 @@ class GifGridDetailed extends StatelessWidget {
       },
     ).paddingSymmetric(horizontal: 10);
   }
-
 }
-
-

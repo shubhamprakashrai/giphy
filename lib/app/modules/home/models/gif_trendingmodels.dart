@@ -59,9 +59,9 @@ class Analytics {
     Onclick? onsent,
   }) =>
       Analytics(
-        onLoad: onload ?? this.onLoad,
+        onLoad: onload ?? onLoad,
         onclick: onclick ?? this.onclick,
-        onSent: onsent ?? this.onSent,
+        onSent: onsent ?? onSent,
       );
 
   factory Analytics.fromJson(Map<String, dynamic> json) => Analytics(
